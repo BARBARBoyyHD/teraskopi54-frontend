@@ -1,0 +1,334 @@
+.links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2px solid black;
+  gap: 50px;
+}
+header {
+  justify-content: center;
+  align-items: center;
+}
+.wraplinks {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+  bottom: 10px;
+}
+.landingpage {
+  position: relative; /* Ensure the overlay is positioned correctly */
+  background-image: url("/src/asset/coffebeans.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: rgb(0, 0, 0);
+  min-height: 100vh;
+}
+
+/* landingpage.css */
+.links a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  padding: 8px;
+  border-radius: 10px;
+  background-color: #ff5405;
+}
+.links a:hover {
+  background-color: black;
+}
+.navbar {
+  width: 100%;
+  position: relative;
+  justify-content: space-between;
+  display: flex;
+  /* align-items: center; */
+}
+.companyname {
+  position: relative;
+  color: white;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #ff5405;
+  font-size: 2em;
+  /* text-transform: uppercase; */
+  /* letter-spacing: 2px; */
+}
+.Quote {
+  color: white;
+  font-weight: bold;
+  font-size: 50px;
+}
+.navbar,
+.navigation a Link {
+  color: black;
+  gap: 15px;
+  text-decoration: none;
+  font-weight: bold;
+  
+  /* letter-spacing: 2px; */
+  /* padding: 2px 4px; */
+  border-radius: 20px;
+  transition-property: background-color;
+  transition: ease 0.5s;
+}
+.navigation{
+  justify-content: flex-end;
+}
+
+.navbar .navigation a:not(:last-child) {
+  margin-right: 10px;
+}
+
+.navbar .navigation a:hover {
+  background-color: #ff5405;
+  border-radius: 10px;
+}
+.navbar a,
+.navbar a:link {
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+.hamburger {
+  display: none;
+}
+.wrap-navigation{
+  display: flex;
+  justify-content: flex-end;
+}
+#check {
+  z-index: 3;
+  display: none;
+}
+input[type="checkbox"] {
+  display: none;
+}
+.about {
+  min-height: 70vh;
+}
+.wrap-about {
+  display: flex;
+  justify-content: center;
+}
+.description {
+  width: 900px;
+  height: 600px;
+  background: linear-gradient(#853002, black);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.about-us-title,
+p {
+  color: white;
+}
+.desc {
+  color: black;
+}
+.image {
+  width: 900px;
+  height: 600px;
+  background-image: url("/src/asset/top-view-cup-coffee-with-chocolate.jpg"); 
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.img-rate {
+  width: 50px;
+  height: 50px;
+  background-image: url("/src/asset/car.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.img-rate2 {
+  width: 50px;
+  height: 50px;
+  background-image: url("/src/asset/smile.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.img-rate3 {
+  width: 50px;
+  height: 50px;
+  background-image: url("/src/asset/like.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.wrap-image {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.enjoy {
+  min-height: 30vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f1ede1;
+  gap: 300px;
+}
+.contact {
+  display: flex;
+  flex-direction: column;
+  min-height: 20vh;
+  align-items: center;
+  background-color: #ff5405;
+}
+.wrap-contact {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.teras-kopi {
+  width: 350px;
+  height: 300px;
+  display: flex;
+  align-items: center;
+}
+.ig {
+  width: 50px;
+  height: 50px;
+  background-image: url("/src/asset/instagram.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.fb {
+  background-image: url("/src/asset/facebook.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 50px;
+  height: 50px;
+}
+.sosmed {
+  display: flex;
+  align-items: center;
+  width: 400px;
+  height: 300px;
+  justify-content: center;
+  gap: 10px;
+}
+.address-detail {
+  color: black;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .navigation {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 0;
+  }
+  .navbar {
+    width: 90%;
+  }
+  .hamburger {
+    display: block;
+    font-size: 25px;
+    cursor: pointer;
+    transition: 0.3s;
+    transition-property: color;
+    color: white;
+  }
+  .hamburger:hover {
+    color: #ff5405;
+  }
+  .hamburger .close-btn {
+    display: none;
+  }
+  #check:checked ~ .wraplinks {
+    display: none;
+  }
+  #check:checked ~ header .navigation {
+    /* z-index: 2; */
+    position: absolute;
+    top: 30%;
+    bottom: 0;
+    left: 50%;
+    right: 0;
+    /* margin-left: 200px; */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  #check:checked ~ header .navigation a Link {
+    font-weight: bold;
+    display: flex;
+    margin-bottom: 50px;
+    justify-content: center;
+    align-items: center;
+    background-color: #ff5405;
+    /* letter-spacing: 2px; */
+  }
+  #check:checked ~ header .hamburger .menu-btn {
+    display: none;
+    background-color: #ff5405;
+  }
+  #check:checked ~ header .hamburger .close-btn {
+    display: block;
+    z-index: 2;
+    /* position: fixed; */
+  }
+  .hamburger .menu-btn {
+    position: absolute;
+    /* margin-left: 60px; */
+  }
+  .hamburger .close-btn {
+    position: absolute;
+    /* margin-left: 60px; */
+  }
+  .enjoy {
+    flex-direction: column;
+    gap: 5px;
+  }
+  .description {
+    font-size: 11px;
+  }
+  .contact {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .wrap-contact {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .teras-kopi {
+    display: flex;
+    justify-content: center;
+    width: 190px;
+    height: 100px;
+  }
+  .sosmed {
+    width: 150px;
+    height: 150px;
+  }
+  .address-detail {
+    font-size: 15px;
+  }
+}
+@media (max-width: 480px) {
+  .description {
+    font-size: 10px;
+  }
+}
