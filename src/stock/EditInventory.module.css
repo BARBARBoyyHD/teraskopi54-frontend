@@ -1,0 +1,68 @@
+/* EditInventory.module.css */
+
+.edit-inventory-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f4f8;
+  }
+  
+  .edit-inventory-form {
+    width: 100%;
+    max-width: 400px;
+    padding: 40px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .edit-inventory-form label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #333;
+  }
+  
+  .edit-inventory-form input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+  
+  .edit-inventory-form input:focus {
+    border-color: #007bff;
+  }
+  
+  .edit-inventory-form button {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .edit-inventory-form button:hover {
+    background-color: #0056b3;
+  }
+  
+  .edit-inventory-form .cancel-button {
+    margin-top: 10px;
+    background-color: #ccc;
+  }
+  
+  .edit-inventory-form .cancel-button:hover {
+    background-color: #999;
+  }
+  

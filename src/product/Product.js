@@ -12,7 +12,6 @@ const Product = () => {
       .then((data) => {
         if (Array.isArray(data)) {
           // Check if the data is indeed an array
-          console.log(data);
           setproduct(data); // Set the product state with the fetched data
         } else {
           console.error("product data is not an array");
@@ -23,74 +22,89 @@ const Product = () => {
       });
   }, []);
 
-  const handleDelete = ()=>{
-
-  }
-  const handleEdit = ()=>{
-
-  }
+  const handleDelete = (id) => {
+    fetch(`http://localhost:5000/api/products/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {
+        if (res.ok) {
+          setproduct(product.filter((item) => item.product_id !== id));
+        } else {
+          alert("Delete Failed");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   // Filter product by name
-  const filteredItems = product ? product.filter(
-    (item) =>
-      item.product_name &&
-      item.product_name.toLowerCase().includes(filterText.toLowerCase())
-  ) : [];
+  const filteredItems = product
+    ? product.filter(
+        (item) =>
+          item.product_name &&
+          item.product_name.toLowerCase().includes(filterText.toLowerCase())
+      )
+    : [];
 
   const columns = [
     {
       name: "Product Name",
-      selector: (row)=> row.product_name,
+      selector: (row) => row.product_name,
       sortable: true,
     },
     {
       name: "Category",
-      selector: (row)=> row.product_category,
+      selector: (row) => row.product_category,
       sortable: true,
     },
     {
       name: "Hot Price",
-      selector: (row)=> row.hot_price,
+      selector: (row) => row.hot_price,
       sortable: true,
       format: (row) => `Rp ${row.hot_price}`,
     },
     {
       name: "Cold Price",
-      selector: (row)=> row.cold_price,
+      selector: (row) => row.cold_price,
       sortable: true,
       format: (row) => `Rp ${row.cold_price}`,
     },
     {
       name: "Large Size Price",
-      selector: (row)=> row.large_size_price,
+      selector: (row) => row.large_size_price,
       sortable: true,
       format: (row) => `Rp ${row.large_size_price}`,
     },
     {
       name: "Small Size Price",
-      selector: (row)=> row.small_size_price,
+      selector: (row) => row.small_size_price,
       sortable: true,
       format: (row) => `Rp ${row.small_size_price}`,
     },
     {
       name: "Image",
-      selector: (row)=> row.image_url,
+      selector: (row) => row.image_url,
       cell: (row) => (
         <img
           src={`http://localhost:5000/${row.image_url}`}
-        
           style={{ width: "50px", height: "50px" }}
         />
       ),
     },
-     {
+    {
       name: "Action",
       cell: (row) => (
         <div>
-          <button className="edit" onClick={() => handleEdit(row)}></button>
+          <Link className="link" to={`/EditProduct/${row.product_id}`}>
+            <button className="edit"></button>
+          </Link>
           <button
             className="delete"
-            onClick={() => handleDelete(row.id_branch)}
+            onClick={() => handleDelete(row.product_id)}
           ></button>
         </div>
       ),
@@ -106,8 +120,8 @@ const Product = () => {
             <Link to="/" className="navbar-link-inventory">
               Logout
             </Link>
-            <Link to="/Cafebranch" className="navbar-link-inventory">
-              Cafe Branch
+            <Link to="/CashierMenu" className="navbar-link-inventory">
+              Menu
             </Link>
           </nav>
         </div>
@@ -117,8 +131,8 @@ const Product = () => {
         <div className="bg-stock">
           <div className="search-add">
             <button className="add-inventory">
-              <Link className="link" to={"/Addinventory"}>
-                Add Item
+              <Link className="link" to={"/AddProduct"}>
+                Add Product
               </Link>
             </button>
             <input

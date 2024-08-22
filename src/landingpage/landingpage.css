@@ -9,6 +9,9 @@ header {
   justify-content: center;
   align-items: center;
 }
+.p{
+  color: white;
+}
 .wraplinks {
   display: flex;
   flex-direction: column;

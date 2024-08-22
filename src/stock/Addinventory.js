@@ -1,4 +1,4 @@
-import "./Addinventory.css";
+import styles from "./Addinventory.module.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 

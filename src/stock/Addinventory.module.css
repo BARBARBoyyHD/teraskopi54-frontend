@@ -3,12 +3,11 @@ form{
 }
 label{
     margin-right: 10px;
-    border-radius: 10px;
+
     font-size: 20px;
 }
 input{
     margin-right: 10px;
-    border-radius: 10px;
 }
 button{
     margin: 10px;

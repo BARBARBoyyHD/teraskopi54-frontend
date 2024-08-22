@@ -10,6 +10,7 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
+
 .icon-input {
   position: relative;
 }
@@ -19,13 +20,12 @@
   left: 10px;
   top: 50%;
   transform: translateY(-50%);
-  color: #292525;
+  color: #ccc;
 }
 
 .icon-input input {
   padding-left: 30px; /* adjust the padding to accommodate the icon */
 }
-
 .navbar {
   width: 100%;
   padding: 15px 0;
@@ -41,7 +41,7 @@
   align-items: center;
 }
 
-.back-button{
+.back-button {
   background-image: url("/src/asset/left-arrow.png");
   background-position: center;
   background-repeat: no-repeat;
@@ -83,6 +83,15 @@ form {
   flex-direction: column;
 }
 
+.label-stock {
+  gap: 15px;
+  font-size: 16px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: auto;
+}
 
 .wrap-input {
   gap: 10px;
@@ -100,7 +109,7 @@ form {
   margin-top: 10px;
 }
 
-.btn-register{
+.btn-register {
   padding: 10px 15px;
   border: none;
   border-radius: 8px;
@@ -132,13 +141,12 @@ form {
 .button-stock + .button-stock:hover {
   background-color: #000000;
 }
-.btn-login:hover  {
+.btn-login:hover {
   background-color: #000000;
   color: white;
 }
 
-.btn-register:hover  {
+.btn-register:hover {
   background-color: #000000;
   color: white;
 }
-

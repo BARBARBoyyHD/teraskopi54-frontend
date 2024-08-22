@@ -148,6 +148,7 @@ const Cart = () => {
       <h1>Shopping Cart</h1>
       <Link to="/AddProduct">Add Product</Link>
       <Link to={"/Product"}>Product List</Link>
+      <Link to="/OrderDetails">Order Details</Link>
       <ul>
         {products.map((product) => (
           <li key={product.product_id}>

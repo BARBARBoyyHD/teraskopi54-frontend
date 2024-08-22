@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import './stock.module.css';
+import styles from "./stock.module.css"; // Ensure correct import path
 
 const Stock = () => {
   const [username, setUsername] = useState("");
@@ -21,10 +21,8 @@ const Stock = () => {
       });
 
       if (response.ok) {
-        // Navigate on successful login
         navigate("/inventory");
       } else {
-        // Parse JSON response to get error message
         const data = await response.json();
         setMessage(data.message || "Incorrect username or password");
       }
@@ -34,36 +32,60 @@ const Stock = () => {
     }
   };
 
+  const handleRegister = () => {
+    navigate("/RegisterStock");
+  };
+
   return (
-    <div className="stock">
-      <h1>Stock Login</h1>
-      <form onSubmit={handleLogin}>
-        <div>
-          <label>Username:</label>
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
+    <div className={styles.stock}>
+      <header className={styles.navbar}>
+        <div className={styles.navigation}>
+          <Link to="/" className={styles["back-button"]}></Link>
         </div>
-        <div>
-          <label>Password:</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit">Login</button>
-        <button>
-          <Link to="/RegisterStock" style={{ textDecoration: 'none', color: 'inherit' }}>
-            Register
-          </Link>
-        </button>
-      </form>
-      {message && <p>{message}</p>}
+      </header>
+      <div className={styles["wrap-login-stock"]}>
+        <h1>Stock Login</h1>
+        <form onSubmit={handleLogin}>
+          <div className={styles["wrap-input"]}>
+            <div className={styles["icon-input"]}>
+              <i className="fas fa-user"></i>
+              <input
+                className={styles["login-input-stock"]}
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                required
+                placeholder="Username"
+              />
+            </div>
+
+            <div className={styles["icon-input"]}>
+              <i className="fas fa-lock"></i>
+              <input
+                className={styles["login-input-stock"]}
+                type="text"
+                value={username}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Password"
+                required
+              />
+            </div>
+          </div>
+          <div className={styles["wrap-button-stock"]}>
+            <button type="submit" className={styles["btn-login"]}>
+              Login
+            </button>
+            <button
+              type="button"
+              className={styles["btn-register"]}
+              onClick={handleRegister}
+            >
+              Register
+            </button>
+          </div>
+        </form>
+        {message && <p>{message}</p>}
+      </div>
     </div>
   );
 };

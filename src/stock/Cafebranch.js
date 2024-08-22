@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import DataTable from "react-data-table-component";
 import { useState, useEffect } from "react";
-import "./Cafebranch.css";
+import styles from "./Cafebranch.module.css";
 
 const Cafebranch = () => {
   const [cafeBranch, setCafeBranch] = useState([]);
@@ -9,7 +9,9 @@ const Cafebranch = () => {
   const [address_branch, setAddress_branch] = useState("");
   const [contact, setContact] = useState("");
   const [editingBranch, setEditingBranch] = useState(null);
+  const [filterText, setFilterText] = useState("");
 
+  // Fetch functions omitted for brevity...
   // Function to handle delete
   const handleDelete = (id) => {
     fetch(`http://localhost:5000/api/cafe-branch/${id}`, {
@@ -50,7 +52,11 @@ const Cafebranch = () => {
         console.log(err);
       });
   };
-
+  const filteredItems = Array.isArray(cafeBranch)
+    ? cafeBranch.filter((item) =>
+        item.branch_name?.toLowerCase().includes(filterText.toLowerCase())
+      )
+    : [];
   // Function to handle form submission for adding new branch
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -81,7 +87,11 @@ const Cafebranch = () => {
     fetch(`http://localhost:5000/api/cafe-branch`)
       .then((res) => res.json())
       .then((data) => {
-        setCafeBranch(data);
+        if (Array.isArray) {
+          setCafeBranch(data);
+        } else {
+          console.error("Cafe branch data is not an array");
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -93,6 +103,7 @@ const Cafebranch = () => {
   }, []);
 
   // Handle row click to edit
+
   const handleRowClick = (row) => {
     setEditingBranch({
       id_branch: row.id_branch,
@@ -102,7 +113,6 @@ const Cafebranch = () => {
     });
   };
 
-  // Define columns for DataTable
   const columns = [
     {
       name: "Branch Name",
@@ -123,9 +133,12 @@ const Cafebranch = () => {
       name: "Action",
       cell: (row) => (
         <div>
-          <button className="edit" onClick={() => handleRowClick(row)}></button>
           <button
-            className="delete"
+            className={styles.edit}
+            onClick={() => handleRowClick(row)}
+          ></button>
+          <button
+            className={styles.delete}
             onClick={() => handleDelete(row.id_branch)}
           ></button>
         </div>
@@ -134,24 +147,23 @@ const Cafebranch = () => {
   ];
 
   return (
-    <div>
-      <header className="navbar-inventory">
-        <div className="navbar-content-inventory">
-          <h1 className="navbar-title-inventory">Cafe Branch</h1>
-          <nav className="navbar-links-inventory">
-            <Link to="/" className="navbar-link-inventory">
+    <div className="container">
+      <header className={styles["navbar-inventory"]}>
+        <div className={styles["navbar-content-inventory"]}>
+          <h1 className={styles["navbar-title-inventory"]}>Cafe branch</h1>
+          <nav className={styles["navbar-links-inventory"]}>
+            <Link to="/" className={styles["navbar-link-inventory"]}>
               Logout
             </Link>
-            <Link to="/inventory" className="navbar-link-inventory">
+            <Link to="/Inventory" className={styles["navbar-link-inventory"]}>
               Inventory
             </Link>
           </nav>
         </div>
       </header>
-      <h1>Cafe Branch</h1>
-      <div className="form-add">
+
+      <div className="bg-for-wrapp">
         <form
-          className="form-add"
           onSubmit={
             editingBranch
               ? (e) => {
@@ -160,11 +172,12 @@ const Cafebranch = () => {
                 }
               : handleSubmit
           }
+          className={styles["formAdd"]}
         >
-          <label>Branch Name: </label>
+          <label className={styles["label"]}>Branch Name: </label>
           <input
             type="text"
-            className="input-cafe"
+            className={styles["inputCafe"]}
             value={editingBranch ? editingBranch.branch_name : branch_name}
             onChange={(e) =>
               editingBranch
@@ -176,10 +189,10 @@ const Cafebranch = () => {
             }
             required
           />
-          <label>Address:</label>
+          <label className={styles["label"]}>Address:</label>
           <input
             type="text"
-            className="input-cafe"
+            className={styles["inputCafe"]}
             value={
               editingBranch ? editingBranch.address_branch : address_branch
             }
@@ -193,10 +206,10 @@ const Cafebranch = () => {
             }
             required
           />
-          <label>Contact:</label>
+          <label className={styles["label"]}>Contact:</label>
           <input
             type="number"
-            className="input-cafe"
+            className={styles["inputCafe"]}
             value={editingBranch ? editingBranch.contact : contact}
             onChange={(e) =>
               editingBranch
@@ -208,19 +221,31 @@ const Cafebranch = () => {
             }
             required
           />
-          <button type="submit" className="add-branch">
+          <button type="submit" className={styles.addBranch}>
             {editingBranch ? "Update" : "Add"}
           </button>
         </form>
-      </div>
-      <div className="bg-stock-cafe">
-        <div className="data-table-wrapper">
-          <DataTable
-            columns={columns}
-            data={cafeBranch}
-            pagination
-            highlightOnHover
-          />
+        <div className={styles["main-content"]}>
+          <div className={styles["bg-stock"]}>
+            <div className={styles["search-add"]}>
+              <input
+                type="text"
+                placeholder="Search Branch Name"
+                value={filterText}
+                onChange={(e) => setFilterText(e.target.value)}
+                className={styles["search-input"]}
+              />
+            </div>
+            <div className={styles["data-table-wrapper"]}>
+              <DataTable
+                columns={columns}
+                data={filteredItems}
+                pagination
+                highlightOnHover
+                striped
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>

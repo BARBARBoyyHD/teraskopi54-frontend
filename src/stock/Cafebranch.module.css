@@ -1,0 +1,216 @@
+
+.container{
+  display: flex;
+  align-items: center;
+  min-height: 100vh;
+  justify-content: center;
+ 
+}
+.bg-for-wrapp{
+  background: url("/src/asset/login.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.link {
+  text-decoration: none;
+  color: white;
+}
+.formAdd {
+  display: flex;
+  width: auto;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.label {
+  font-size: 14px;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.inputCafe {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #853002;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.addBranch {
+  display: inline-block;
+  padding: 8px 16px;
+  font-size: 14px;
+  color: #fff;
+  background-color: #853002;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.addBranch:hover {
+  background-color: #fd7c04;
+}
+
+
+.dataTableWrapper {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.edit {
+  width: 20px;
+  height: 20px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border: none;
+  background-image: url("/src/asset/edit.png");
+  cursor: pointer;
+}
+.delete {
+  width: 20px;
+  height: 20px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border: none;
+  background-image: url("/src/asset/delete.png");
+  cursor: pointer;
+}
+.bg-stock {
+  width: 100%;
+  padding: 5px;
+  border: 2px solid #853002;
+  border-radius: 10px;
+  background-color: white;
+}
+.main-content {
+  display: flex;
+ width: auto;
+ padding: 20px;
+ align-items: center;
+ justify-content: center;
+}
+
+table {
+  margin: 20px auto;
+  border-collapse: separate;
+  border-radius: 10px;
+  width: auto;
+}
+
+table {
+  border: 2px solid #853002;
+  border-radius: 10px;
+}
+
+th,
+td {
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+}
+.search-add {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 5px;
+}
+.add-inventory {
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: #853002;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+}
+.search-input {
+  padding: 10px;
+  border: 2px solid #853002;
+  border-radius: 10px;
+}
+.data-table-wrapper table {
+  border-radius: 10px; /* Adjust the value as needed */
+  overflow: hidden; /* This ensures the content inside the table respects the border radius */
+  border: 1px solid black;
+}
+
+.data-table-wrapper .rdt_TableHead,
+.data-table-wrapper .rdt_TableBody {
+  border-radius: 10px; /* Apply the same border radius to the header and body */
+}
+
+.data-table-wrapper .rdt_TableRow {
+  border-radius: 10px; /* Apply border radius to individual rows */
+}
+/* Navbar.css */
+
+.navbar-inventory {
+  background-color: #853002;
+  padding: 10px 20px;
+  color: #fff;
+}
+
+.navbar-content-inventory {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-title-inventory {
+  margin: 0;
+}
+
+.navbar-links-inventory {
+  display: flex;
+  gap: 15px;
+}
+
+.navbar-link-inventory {
+  color: #fff;
+  text-decoration: none;
+  padding: 5px 10px;
+}
+
+.navbar-link-inventory:hover {
+  background-color: #fd7c04;
+  border-radius: 5px;
+}
+
+@media (max-width: 768px) {
+  .data-table-wrapper th,
+  .data-table-wrapper td {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .data-table-wrapper tr {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .data-table-wrapper td {
+    text-align: right;
+    position: relative;
+    padding-left: 50%;
+    white-space: nowrap;
+  }
+
+  .data-table-wrapper td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0;
+    width: 50%;
+    padding-left: 10px;
+    font-weight: bold;
+    white-space: nowrap;
+    text-align: left;
+  }
+}

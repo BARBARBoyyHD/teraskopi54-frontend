@@ -1,16 +1,16 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { useNavigate, useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import styles from "./EditInventory.module.css";
 
 const EditInventory = () => {
   const navigate = useNavigate();
-  const { id } = useParams(); // Assuming the URL contains the item_id
+  const { id } = useParams(); 
   const [item_name, setItemName] = useState("");
   const [quantity, setQuantity] = useState("");
   const [price_per_pcs, setPricePerPcs] = useState("");
 
-  useState(() => {
-    // Fetch item data based on `id` when the component mounts
+  useEffect(() => {
+    // Fetch item data based on `id`
     fetch(`http://localhost:5000/api/inventory/${id}`)
       .then((res) => res.json())
       .then((data) => {
@@ -43,8 +43,8 @@ const EditInventory = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div className={styles["edit-inventory-container"]}>
+      <form onSubmit={handleSubmit} className={styles["edit-inventory-form"]}>
         <label htmlFor="item_name">Item Name</label>
         <input
           type="text"
@@ -73,7 +73,11 @@ const EditInventory = () => {
         />
 
         <button type="submit">Submit</button>
-        <Link to='/inventory'><button>Cancel</button></Link>
+        <Link to='/inventory'>
+          <button type="button" className={styles["cancel-button"]}>
+            Cancel
+          </button>
+        </Link>
       </form>
     </div>
   );

@@ -15,7 +15,6 @@
   background-size: cover;
   background-repeat: no-repeat;
   border: none;
-  color: red;
   background-image: url("/src/asset/edit.png");
   cursor: pointer;
 }
@@ -26,7 +25,6 @@
   background-size: cover;
   background-repeat: no-repeat;
   border: none;
-  color: red;
   background-image: url("/src/asset/delete.png");
   cursor: pointer;
 }
@@ -108,7 +106,7 @@ td {
 /* Navbar.css */
 
 .navbar-inventory {
-  background-color: #333;
+  background-color: #853002;
   padding: 10px 20px;
   color: #fff;
 }
@@ -135,7 +133,7 @@ td {
 }
 
 .navbar-link-inventory:hover {
-  background-color: #555;
+  background-color: #fd7c04;
   border-radius: 5px;
 }
 

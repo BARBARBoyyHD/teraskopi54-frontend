@@ -1,4 +1,4 @@
-import "./inventory.css";
+import styles from "./inventory.module.css";
 import { useState, useEffect } from "react";
 import DataTable from "react-data-table-component";
 import { Link } from "react-router-dom";
@@ -16,10 +16,8 @@ const Inventory = () => {
     })
       .then((res) => {
         if (res.ok) {
-          // Remove the item from the state only if the deletion was successful
           setInventory(inventory.filter((item) => item.item_id !== id));
         } else {
-          // Handle errors here
           console.error("Failed to delete item");
         }
       })
@@ -32,7 +30,7 @@ const Inventory = () => {
     fetch("http://localhost:5000/api/inventory")
       .then((res) => res.json())
       .then((data) => {
-        const inventoryData = data; // Assuming data is already an array
+        const inventoryData = data;
         if (Array.isArray(inventoryData)) {
           setInventory(inventoryData);
         } else {
@@ -49,10 +47,8 @@ const Inventory = () => {
   }, []);
 
   const filteredItems = Array.isArray(inventory)
-    ? inventory.filter(
-        (item) =>
-          item.item_name &&
-          item.item_name.toLowerCase().includes(filterText.toLowerCase())
+    ? inventory.filter((item) =>
+        item.item_name?.toLowerCase().includes(filterText.toLowerCase())
       )
     : [];
 
@@ -78,15 +74,15 @@ const Inventory = () => {
     {
       name: "Edit",
       cell: (row) => (
-        <Link className="link" to={`/EditInventory/${row.item_id}`}>
-          <button className="edit"></button>
+        <Link className={styles.link} to={`/EditInventory/${row.item_id}`}>
+          <button className={styles.edit}></button>
         </Link>
       ),
     },
     {
       name: "Delete",
       cell: (row) => (
-        <button className="delete" onClick={() => handleDelete(row.item_id)}>
+        <button className={styles.delete} onClick={() => handleDelete(row.item_id)}>
           
         </button>
       ),
@@ -94,26 +90,26 @@ const Inventory = () => {
   ];
 
   return (
-    <div className="container">
-      <header className="navbar-inventory">
-        <div className="navbar-content-inventory">
-          <h1 className="navbar-title-inventory">Inventory</h1>
-          <nav className="navbar-links-inventory">
-            <Link to="/" className="navbar-link-inventory">
+    <div className={styles.container}>
+      <header className={styles["navbar-inventory"]}>
+        <div className={styles["navbar-content-inventory"]}>
+          <h1 className={styles["navbar-title-inventory"]}>Inventory</h1>
+          <nav className={styles["navbar-links-inventory"]}>
+            <Link to="/" className={styles["navbar-link-inventory"]}>
               Logout
             </Link>
-            <Link to="/Cafebranch" className="navbar-link-inventory">
+            <Link to="/Cafebranch" className={styles["navbar-link-inventory"]}>
               Cafe Branch
             </Link>
           </nav>
         </div>
       </header>
-      <div className="main-content">
+      <div className={styles["main-content"]}>
         <h1>All Stock</h1>
-        <div className="bg-stock">
-          <div className="search-add">
-            <button className="add-inventory">
-              <Link className="link" to={"/Addinventory"}>
+        <div className={styles["bg-stock"]}>
+          <div className={styles["search-add"]}>
+            <button className={styles["add-inventory"]}>
+              <Link className={styles.link} to={"/Addinventory"}>
                 Add Item
               </Link>
             </button>
@@ -122,10 +118,10 @@ const Inventory = () => {
               placeholder="Search Inventory"
               value={filterText}
               onChange={(e) => setFilterText(e.target.value)}
-              className="search-input"
+              className={styles["search-input"]}
             />
           </div>
-          <div className="data-table-wrapper">
+          <div className={styles["data-table-wrapper"]}>
             <DataTable
               columns={columns}
               data={filteredItems}

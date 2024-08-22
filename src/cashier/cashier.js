@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import style from "./cashier.module.css";
+
 
 const Cashier = () => {
   const [username, setUsername] = useState("");
@@ -29,40 +31,55 @@ const Cashier = () => {
       });
   };
 
+  const handleRegister = (e) => {
+    navigate("/RegisterCashier");
+  }
+
   return (
-    <div className="cashier">
-      <h1>Login Cashier</h1>
-      <form onSubmit={handleLogin} className="login-form">
-        <label htmlFor="username" className="usn">
-          User Name:
-        </label>
-        <input
-          type="text"
-          id="username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          className="input-cashier"
-          required
-        />
-        <label htmlFor="password" className="password">
-          Password:
-        </label>
-        <input
-          type="password"
-          id="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="input-cashier"
-          required
-        />
-        <button type="submit" className="login-button">
-          Login
-        </button>
-        <Link to="/RegisterCashier">
-          <button type="button">Register</button>
-        </Link>
+    <div className={style["stock"]}>
+    <header className={style["navbar"]}>
+      <div className={style["navigation"]}>
+        <Link to="/" className={style["back-button"]}></Link>
+      </div>
+    </header>
+    <div className={style["wrap-login-stock"]}>
+      <h1>Cashier Login</h1>
+      <form onSubmit={handleLogin}>
+        <div className={style["wrap-input"]}>
+        <div className={style["wrap-input"]}>
+            <div className={style["icon-input"]}>
+              <i className="fas fa-user"></i>
+              <input
+                className={style["login-input-stock"]}
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                required
+                placeholder="Username"
+              />
+            </div>
+
+            <div className={style["icon-input"]}>
+              <i className="fas fa-lock"></i>
+              <input
+                className={style["login-input-stock"]}
+                type="text"
+                value={username}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Password"
+                required
+              />
+            </div>
+          </div>
+        </div>
+        <div className={style["wrap-button-stock"]}>
+          <button type="submit" className={style["btn-login"]}>Login</button>
+
+          <button onClick={handleRegister}  className={style["btn-register"]}>Register</button>
+        </div>
       </form>
     </div>
+  </div>
   );
 };
 

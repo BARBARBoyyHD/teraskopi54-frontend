@@ -12,12 +12,13 @@ import CashierMenu from "./cashier/CashierMenu";
 import RegisterCashier from "./cashier/RegisterCashier";
 import AddProduct from "./cashier/AddProduct";
 import Product from "./product/Product";
+import OrderDetails from "./product/OrderDetails";
+import EditProduct from "./product/EditProduct";
 // import Navbar from './navbar';
 
 function App() {
   return (
     <Router>
-      <div className="App">
           <Routes>
             <Route exact path="/" element={<Landingpage />} />
             <Route path="/cashier" element={<Cashier />}></Route>
@@ -34,8 +35,9 @@ function App() {
             ></Route>
             <Route path="/AddProduct" element={<AddProduct />}></Route>
             <Route path="/Product" element={<Product />}></Route>
+            <Route path="/OrderDetails" element={<OrderDetails />}></Route>
+            <Route path="/EditProduct/:id" element={<EditProduct />}></Route>
           </Routes>
-      </div>
     </Router>
   );
 }

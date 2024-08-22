@@ -1,0 +1,151 @@
+import { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
+
+const EditProduct = () => {
+  const { id } = useParams(); // Get id from the URL params
+  const [productName, setProductName] = useState("");
+  const [productCategory, setProductCategory] = useState("");
+  const [hotPrice, setHotPrice] = useState("");
+  const [coldPrice, setColdPrice] = useState("");
+  const [largeSizePrice, setLargeSizePrice] = useState("");
+  const [smallSizePrice, setSmallSizePrice] = useState("");
+  const [image, setImage] = useState(null); // This holds the new image file
+  const [existingImageUrl, setExistingImageUrl] = useState(""); // This holds the existing image URL from the database
+  const navigate = useNavigate();
+
+  // Fetch product data using useEffect
+  useEffect(() => {
+    fetch(`http://localhost:5000/api/products/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setProductName(data.product_name);
+        setProductCategory(data.product_category);
+        setHotPrice(data.hot_price);
+        setColdPrice(data.cold_price);
+        setLargeSizePrice(data.large_size_price);
+        setSmallSizePrice(data.small_size_price);
+        setExistingImageUrl(data.image_url); // Set the existing image URL
+      })
+      .catch((error) => {
+        console.error("Error fetching product data:", error);
+      });
+  }, [id]);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const formData = new FormData();
+    formData.append("product_name", productName);
+    formData.append("product_category", productCategory);
+    formData.append("hot_price", hotPrice);
+    formData.append("cold_price", coldPrice);
+    formData.append("large_size_price", largeSizePrice);
+    formData.append("small_size_price", smallSizePrice);
+
+    // Only append the image if a new one is provided
+    if (image) {
+      formData.append("image", image);
+    } else {
+      formData.append("existing_image_url", existingImageUrl); // Send the existing image URL if no new image is uploaded
+    }
+
+    try {
+      await axios.put(`http://localhost:5000/api/products/${id}`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      alert("Product updated successfully!");
+      navigate("/CashierMenu");
+    } catch (error) {
+      console.error("Error updating product:", error);
+      alert("Error updating product. Please try again.");
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit} encType="multipart/form-data">
+      <label>
+        Product Name:
+        <input
+          type="text"
+          value={productName}
+          onChange={(e) => setProductName(e.target.value)}
+          required
+        />
+      </label>
+      <br />
+      <label>
+        Product Category:
+        <input
+          type="text"
+          value={productCategory}
+          onChange={(e) => setProductCategory(e.target.value)}
+        />
+      </label>
+      <br />
+      <label>
+        Hot Price:
+        <input
+          type="number"
+          value={hotPrice}
+          onChange={(e) => setHotPrice(e.target.value)}
+          required
+        />
+      </label>
+      <br />
+      <label>
+        Cold Price:
+        <input
+          type="number"
+          value={coldPrice}
+          onChange={(e) => setColdPrice(e.target.value)}
+          required
+        />
+      </label>
+      <br />
+      <label>
+        Large Size Price:
+        <input
+          type="number"
+          value={largeSizePrice}
+          onChange={(e) => setLargeSizePrice(e.target.value)}
+          required
+        />
+      </label>
+      <br />
+      <label>
+        Small Size Price:
+        <input
+          type="number"
+          value={smallSizePrice}
+          onChange={(e) => setSmallSizePrice(e.target.value)}
+          required
+        />
+      </label>
+      <br />
+      <label>
+        Image:
+        <input
+          type="file"
+          accept="image/*"
+          name="image"
+          onChange={(e) => setImage(e.target.files[0])} // Set the new image
+        />
+      </label>
+      <br />
+      {/* Display the existing image */}
+      {existingImageUrl && (
+        <img
+          src={`http://localhost:5000/uploads/${existingImageUrl}`} // Corrected to use image_url from the database
+          width="100"
+        />
+      )}
+      <br />
+      <button type="submit">Update Product</button>
+    </form>
+  );
+};
+
+export default EditProduct;
