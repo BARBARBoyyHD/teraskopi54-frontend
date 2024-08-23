@@ -10,11 +10,13 @@
     "axios": "^1.7.4",
     "datatables.net-dt": "^2.1.3",
     "react": "^18.3.1",
+    "react-cart": "^0.2.0",
     "react-data-table-component": "^7.6.2",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.26.0",
     "react-scripts": "5.0.1",
     "react-switch": "^7.0.0",
+    "react-use-cart": "^1.14.0",
     "styled-components": "^6.1.12",
     "web-vitals": "^2.1.4"
   },

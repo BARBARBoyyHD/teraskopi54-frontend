@@ -1,4 +1,5 @@
 /* Assuming this is in a file like `StockLogin.module.css` */
+/* body */
 .stock {
   display: flex;
   flex-direction: column;
@@ -149,4 +150,8 @@ form {
 .btn-register:hover {
   background-color: #000000;
   color: white;
+}
+
+.cart-wrap{
+  display: none;
 }

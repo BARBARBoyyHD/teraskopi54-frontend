@@ -11,20 +11,38 @@
     background-size: cover;
   }
   
-  .navbar {
-    width: 100%;
-    padding: 15px 0;
+  .navbar-inventory {
+    background-color: #853002;
+    padding: 10px 20px;
+    color: #fff;
+  }
+  
+  .navbar-content-inventory {
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
-  .navigation {
-    width: 90%;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  
+  .navbar-title-inventory {
+    margin: 0;
   }
+  
+  .navbar-links-inventory {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .navbar-link-inventory {
+    color: #fff;
+    text-decoration: none;
+    padding: 5px 10px;
+  }
+  
+  .navbar-link-inventory:hover {
+    background-color: #fd7c04;
+    border-radius: 5px;
+  }
+  
   
   .back-button{
     background-image: url("/src/asset/left-arrow.png");

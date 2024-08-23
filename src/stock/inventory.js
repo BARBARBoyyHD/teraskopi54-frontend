@@ -95,7 +95,7 @@ const Inventory = () => {
         <div className={styles["navbar-content-inventory"]}>
           <h1 className={styles["navbar-title-inventory"]}>Inventory</h1>
           <nav className={styles["navbar-links-inventory"]}>
-            <Link to="/" className={styles["navbar-link-inventory"]}>
+            <Link to="/stock" className={styles["navbar-link-inventory"]}>
               Logout
             </Link>
             <Link to="/Cafebranch" className={styles["navbar-link-inventory"]}>

@@ -63,8 +63,8 @@ const Stock = () => {
               <i className="fas fa-lock"></i>
               <input
                 className={styles["login-input-stock"]}
-                type="text"
-                value={username}
+                type="password"
+                value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password"
                 required

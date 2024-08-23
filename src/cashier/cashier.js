@@ -63,8 +63,8 @@ const Cashier = () => {
               <i className="fas fa-lock"></i>
               <input
                 className={style["login-input-stock"]}
-                type="text"
-                value={username}
+                type="password"
+                value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password"
                 required

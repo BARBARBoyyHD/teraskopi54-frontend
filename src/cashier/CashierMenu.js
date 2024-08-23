@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import styles from "../cashier/CashierMenu.module.css";
 
 const Cart = () => {
+  const [quantity, setQuantity] = useState({});
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
   const [total, setTotal] = useState(0);
@@ -18,16 +20,23 @@ const Cart = () => {
         // Log the response data
         if (Array.isArray(response.data)) {
           setProducts(response.data);
+          const initialQuantity = {};
+          response.data.forEach((product) => {
+            initialQuantity[product.product_id] = 0;
+          });
+          setQuantity(initialQuantity);
         } else {
           console.error("Expected an array but got:", response.data);
           setProducts([]); // Set to empty array if data is not an array
+          setQuantity({});
         }
       })
       .catch((error) => {
         console.error("Error fetching products:", error);
         setProducts([]); // Set to empty array on error
+        setQuantity({});
       });
-  }, []);
+  }, [quantity]);
 
   const handleAddToCart = (product, variant, size) => {
     if (!variant) {
@@ -67,26 +76,46 @@ const Cart = () => {
     calculateTotal();
   };
 
-  const handleRemoveFromCart = (item) => {
-    setCart(
-      cart.filter(
-        (cartItem) =>
-          cartItem.product_id !== item.product_id ||
-          cartItem.variant_type !== item.variant_type ||
-          cartItem.size_name !== item.size_name
-      )
-    );
-    calculateTotal();
-  };
+  const handleDecreaseItem = (productId) => {
+    const updatedCart = cart
+      .map((item) => {
+        if (item.product_id === productId) {
+          if (item.quantity_order > 1) {
+            return { ...item, quantity_order: item.quantity_order - 1 };
+          } else {
+            return null;
+          }
+        }
+        return item;
+      })
+      .filter((item) => item !== null);
 
+    setCart(updatedCart);
+    calculateTotal(); // Recalculate total after updating cart
+  };
+  const handleRemoveFromCart = (item) => {
+    const newCart = cart.filter(
+      (cartItem) =>
+        cartItem.product_id !== item.product_id ||
+        cartItem.variant_type !== item.variant_type ||
+        cartItem.size_name !== item.size_name
+    );
+    setCart(newCart);
+    if (newCart.length < 1) {
+      setTotal(0); // Reset total to 0 when cart is empty
+    } else {
+      calculateTotal();
+    }
+  };
   const calculateTotal = () => {
     let total = 0;
     cart.forEach((item) => {
-      total += item.price * item.quantity_order;
+      if (item.quantity_order > 0) {
+        total += item.price * item.quantity_order;
+      }
     });
     setTotal(total);
   };
-
   const handleCheckout = () => {
     if (!customerName || !paymentMethod) {
       alert("Please enter customer name and select a payment method");
@@ -144,85 +173,189 @@ const Cart = () => {
   };
 
   return (
-    <div>
-      <h1>Shopping Cart</h1>
-      <Link to="/AddProduct">Add Product</Link>
-      <Link to={"/Product"}>Product List</Link>
-      <Link to="/OrderDetails">Order Details</Link>
-      <ul>
-        {products.map((product) => (
-          <li key={product.product_id}>
-            <img
-              src={`http://localhost:5000/${product.image_url}`}
-              style={{ width: 100, height: 100 }}
-              alt={product.product_name}
-            />
-            {product.product_name} - ${product.product_price}
-            <select
-              value={selectedVariant[product.product_id] || ""}
-              onChange={(e) =>
-                handleVariantChange(product.product_id, e.target.value)
-              }
+    <div className={styles["stock"]}>
+      <header className={styles["navbar-inventory"]}>
+        <div className={styles["navbar-content-inventory"]}>
+          <h1 className={styles["navbar-title-inventory"]}>TerasKopi54</h1>
+          <nav className={styles["navbar-links-inventory"]}>
+            <Link className={styles["navbar-link-inventory"]} to="/AddProduct">
+              Add Product
+            </Link>
+            <Link className={styles["navbar-link-inventory"]} to={"/Product"}>
+              Product List
+            </Link>
+            <Link
+              className={styles["navbar-link-inventory"]}
+              to="/OrderDetails"
             >
-              <option value="">Select Variant</option>
-              <option value="Hot">Hot</option>
-              <option value="Iced">Iced</option>
-            </select>
-            {selectedVariant[product.product_id] === "Iced" && (
-              <select
-                value={selectedSize[product.product_id] || ""}
-                onChange={(e) =>
-                  handleSizeChange(product.product_id, e.target.value)
-                }
+              Order Details
+            </Link>
+            <Link className={styles["navbar-link-inventory"]} to={"/cashier"}>
+              {" "}
+              logOut
+            </Link>
+          </nav>
+        </div>
+      </header>
+      <h1>Menu</h1>
+      <div className={styles["wrap-all"]}>
+        <div className={styles["wrap-menu"]}>
+          <div className={styles["menu-container"]}>
+            {products.map((product) => (
+              <div key={product.product_id} className={styles["menu-item"]}>
+                <img
+                  src={`http://localhost:5000/${product.image_url}`}
+                  style={{ width: 100, height: 100 }}
+                  alt={product.product_name}
+                />
+                <div>
+                  <h1>{product.product_name}</h1>
+                </div>
+                {product.hot_price > 0 && (
+                  <div>
+                    <p>Hot : Rp.{product.hot_price}</p>
+                  </div>
+                )}
+                {product.cold_price > 0 && (
+                  <div>
+                    {product.hot_price > 0 ? (
+                      <div>
+                        <p>Cold : Rp.{product.cold_price}</p>
+                      </div>
+                    ) : (
+                      <div>
+                        <p>
+                          <strong>Iced</strong> : Rp.{product.cold_price}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                )}
+                <select
+                  value={selectedVariant[product.product_id] || ""}
+                  onChange={(e) =>
+                    handleVariantChange(product.product_id, e.target.value)
+                  }
+                >
+                  <option value="">Select Variant</option>
+                  <option value="Hot">Hot</option>
+                  <option value="Iced">Iced</option>
+                </select>
+                {selectedVariant[product.product_id] === "Iced" && (
+                  <select
+                    value={selectedSize[product.product_id] || ""}
+                    onChange={(e) =>
+                      handleSizeChange(product.product_id, e.target.value)
+                    }
+                  >
+                    <option value="">Select Size</option>
+                    <option value="Large">Large</option>
+                    <option value="Small">Small</option>
+                  </select>
+                )}
+                <div className={styles["button-container"]}>
+                  <button
+                    className="fa-solid fa-minus"
+                    onClick={() => handleDecreaseItem(product.product_id)}
+                  ></button>
+                  <button
+                    onClick={() =>
+                      handleAddToCart(
+                        product,
+                        selectedVariant[product.product_id],
+                        selectedSize[product.product_id]
+                      )
+                    }
+                    className="fa-solid fa-plus"
+                  ></button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className={styles["cart-wrap"]}>
+          <h2>Cart</h2>
+          <ul>
+            {cart.map((item) => (
+              <div
+                key={`${item.product_id}-${item.variant_type}-${item.size_name}`}
+                className={styles["cart-item"]}
               >
-                <option value="">Select Size</option>
-                <option value="Large">Large</option>
-                <option value="Small">Small</option>
-              </select>
-            )}
-            <button
-              onClick={() =>
-                handleAddToCart(
-                  product,
-                  selectedVariant[product.product_id],
-                  selectedSize[product.product_id]
-                )
-              }
+                <img
+                  src={`http://localhost:5000/${item.image_url}`}
+                  style={{
+                    width: 30,
+                    height: 30,
+                    borderRadius: "10px",
+                    border: "2px solid white",
+                  }}
+                />
+                <p>
+                  {item.product_name} ({item.variant_type}){" "}
+                </p>
+                <p>
+                  {item.size_name ? ` ${item.size_name}` : ""} x{" "}
+                  {item.quantity_order} Rp.{item.price * item.quantity_order}
+                </p>
+
+                <div className={styles["button-container"]}>
+                  <button
+                    className="fa-solid fa-minus"
+                    style={{ cursor: "pointer" }}
+                    onClick={() => handleDecreaseItem(item.product_id)}
+                  ></button>
+                  <button
+                    onClick={() =>
+                      handleAddToCart(
+                        item,
+                        selectedVariant[item.product_id],
+                        selectedSize[item.product_id]
+                      )
+                    }
+                    className="fa-solid fa-plus"
+                    style={{ cursor: "pointer" }}
+                  ></button>
+                </div>
+              </div>
+            ))}
+          </ul>
+          <p>
+            <strong>Total</strong>{" "}
+          </p>
+          <p>
+            <strong>
+              {" "}
+              Rp.
+              {cart.reduce(
+                (acc, item) => acc + item.price * item.quantity_order,
+                0
+              )}
+            </strong>
+          </p>
+
+          <div className={styles["wrap-checkout"]}>
+            <h3>Checkout</h3>
+            <input
+              type="text"
+              placeholder="Customer Name"
+              value={customerName}
+              onChange={(e) => setCustomerName(e.target.value)}
+              className={styles["customer-name"]}
+            />
+            <select
+              value={paymentMethod}
+              onChange={(e) => setPaymentMethod(e.target.value)}
+              className={styles["payment-method"]}
             >
-              Add to Cart
-            </button>
-          </li>
-        ))}
-      </ul>
-      <h2>Cart</h2>
-      <ul>
-        {cart.map((item) => (
-          <li key={`${item.product_id}-${item.variant_type}-${item.size_name}`}>
-            {item.product_name} ({item.variant_type}){" "}
-            {item.size_name ? `- ${item.size_name}` : ""} x{" "}
-            {item.quantity_order} - ${item.price * item.quantity_order}
-            <button onClick={() => handleRemoveFromCart(item)}>Remove</button>
-          </li>
-        ))}
-      </ul>
-      <p>Total: ${total.toFixed(2)}</p>
-      <h3>Checkout</h3>
-      <input
-        type="text"
-        placeholder="Customer Name"
-        value={customerName}
-        onChange={(e) => setCustomerName(e.target.value)}
-      />
-      <select
-        value={paymentMethod}
-        onChange={(e) => setPaymentMethod(e.target.value)}
-      >
-        <option value="">Select Payment Method</option>
-        <option value="Credit Card">Credit Card</option>
-        <option value="Cash">Cash</option>
-        <option value="QRIS">QRIS</option>
-      </select>
-      <button onClick={handleCheckout}>Checkout</button>
+              <option value="">Select Payment Method</option>
+              <option value="Credit Card">Credit Card</option>
+              <option value="Cash">Cash</option>
+              <option value="QRIS">QRIS</option>
+            </select>
+            <button onClick={handleCheckout} className={styles["btn-checkout"]}>Checkout</button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
