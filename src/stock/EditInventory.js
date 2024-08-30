@@ -4,7 +4,7 @@ import styles from "./EditInventory.module.css";
 
 const EditInventory = () => {
   const navigate = useNavigate();
-  const { id } = useParams(); 
+  const { id } = useParams();
   const [item_name, setItemName] = useState("");
   const [quantity, setQuantity] = useState("");
   const [price_per_pcs, setPricePerPcs] = useState("");
@@ -18,7 +18,7 @@ const EditInventory = () => {
         setQuantity(data.quantity);
         setPricePerPcs(data.price_per_pcs);
       })
-      .catch((err) => console.error('Error fetching item data:', err));
+      .catch((err) => console.error("Error fetching item data:", err));
   }, [id]);
 
   const handleSubmit = (e) => {
@@ -39,46 +39,61 @@ const EditInventory = () => {
           console.log("Failed");
         }
       })
-      .catch((err) => console.error('Error updating item:', err));
+      .catch((err) => console.error("Error updating item:", err));
   };
 
   return (
-    <div className={styles["edit-inventory-container"]}>
-      <form onSubmit={handleSubmit} className={styles["edit-inventory-form"]}>
-        <label htmlFor="item_name">Item Name</label>
-        <input
-          type="text"
-          id="item_name"
-          name="item_name"
-          value={item_name}
-          onChange={(e) => setItemName(e.target.value)}
-        />
+    <div className={styles.container}>
+      <header className={styles["navbar-inventory"]}>
+        <div className={styles["navbar-content-inventory"]}>
+          <h1 className={styles["navbar-title-inventory"]}>Inventory</h1>
+          <nav className={styles["navbar-links-inventory"]}>
+            <Link to="/Cafebranch" className={styles["navbar-link-inventory"]}>
+              Cafe Branch
+            </Link>
+            <Link to="/stock" className={styles["navbar-link-inventory"]}>
+              Logout
+            </Link>
+          </nav>
+        </div>
+      </header>
+      <div className={styles["edit-inventory-container"]}>
+        <form onSubmit={handleSubmit} className={styles["edit-inventory-form"]}>
+          <label htmlFor="item_name">Item Name</label>
+          <input
+            type="text"
+            id="item_name"
+            name="item_name"
+            value={item_name}
+            onChange={(e) => setItemName(e.target.value)}
+          />
 
-        <label htmlFor="quantity">Quantity</label>
-        <input
-          type="number"
-          id="quantity"
-          name="quantity"
-          value={quantity}
-          onChange={(e) => setQuantity(e.target.value)}
-        />
+          <label htmlFor="quantity">Quantity</label>
+          <input
+            type="number"
+            id="quantity"
+            name="quantity"
+            value={quantity}
+            onChange={(e) => setQuantity(e.target.value)}
+          />
 
-        <label htmlFor="price_per_pcs">Price Per Pcs</label>
-        <input
-          type="number"
-          id="price_per_pcs"
-          name="price_per_pcs"
-          value={price_per_pcs}
-          onChange={(e) => setPricePerPcs(e.target.value)}
-        />
+          <label htmlFor="price_per_pcs">Price Per Pcs</label>
+          <input
+            type="number"
+            id="price_per_pcs"
+            name="price_per_pcs"
+            value={price_per_pcs}
+            onChange={(e) => setPricePerPcs(e.target.value)}
+          />
 
-        <button type="submit">Submit</button>
-        <Link to='/inventory'>
-          <button type="button" className={styles["cancel-button"]}>
-            Cancel
-          </button>
-        </Link>
-      </form>
+          <button type="submit">Submit</button>
+          <Link to="/inventory">
+            <button type="button" className={styles["cancel-button"]}>
+              Cancel
+            </button>
+          </Link>
+        </form>
+      </div>
     </div>
   );
 };

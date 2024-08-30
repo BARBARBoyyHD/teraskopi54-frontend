@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import DataTable from "react-data-table-component";
 import { Link } from "react-router-dom";
+import styles from "./OrderDetails.module.css";
 
 const OrderDetails = () => {
   const [filterText, setFilterText] = useState("");
@@ -10,9 +11,9 @@ const OrderDetails = () => {
     fetch("http://localhost:5000/api/orders")
       .then((res) => res.json())
       .then((data) => {
-        if(Array.isArray(data)){
+        if (Array.isArray(data)) {
           setOrderDetails(data);
-        }else{
+        } else {
           console.error("Order data is not an array");
         }
       })
@@ -76,33 +77,50 @@ const OrderDetails = () => {
       )
     : [];
   return (
-    <div className="container">
-      <header className="navbar-inventory">
-        <div className="navbar-content-inventory">
-          <h1 className="navbar-title-inventory">Order Details</h1>
-          <nav className="navbar-links-inventory">
-            <Link to="/" className="navbar-link-inventory">
-              Logout
+    <div className={styles["container"]}>
+      <header className={styles["navbar-inventory"]}>
+        <div className={styles["navbar-content-inventory"]}>
+          <h1 className={styles["navbar-title-inventory"]}>TerasKopi54</h1>
+          <nav className={styles["navbar-links-inventory"]}>
+            <Link className={styles["navbar-link-inventory"]} to="/AddProduct">
+              Add Product
             </Link>
-            <Link to="/CashierMenu" className="navbar-link-inventory">
+            <Link className={styles["navbar-link-inventory"]} to={"/Product"}>
+              Product List
+            </Link>
+            <Link
+              className={styles["navbar-link-inventory"]}
+              to="/OrderDetails"
+            >
+              Order Details
+            </Link>
+            <Link
+              className={styles["navbar-link-inventory"]}
+              to={"/CashierMenu"}
+            >
+              {" "}
               Menu
+            </Link>
+            <Link className={styles["navbar-link-inventory"]} to={"/cashier"}>
+              {" "}
+              logOut
             </Link>
           </nav>
         </div>
       </header>
-      <div className="main-content">
+      <div className={styles["main-content"]}>
         <h1>All Stock</h1>
-        <div className="bg-stock">
-          <div className="search-add">
+        <div className={styles["bg-stock"]}>
+          <div className={styles["search-add"]}>
             <input
               type="text"
-              placeholder="Search Customer Name"
+              placeholder="Search Inventory"
               value={filterText}
               onChange={(e) => setFilterText(e.target.value)}
-              className="search-input"
+              className={styles["search-input"]}
             />
           </div>
-          <div className="data-table-wrapper">
+          <div className={styles["data-table-wrapper"]}>
             <DataTable
               columns={columns}
               data={filteredItems}

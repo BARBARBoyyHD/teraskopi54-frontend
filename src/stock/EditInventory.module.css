@@ -1,5 +1,41 @@
 /* EditInventory.module.css */
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* width: 100%; */
+}
+.navbar-inventory {
+  background-color: #853002;
+  padding: 10px 20px;
+  color: #fff;
+}
 
+.navbar-content-inventory {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-title-inventory {
+  margin: 0;
+}
+
+.navbar-links-inventory {
+  display: flex;
+  gap: 15px;
+}
+
+.navbar-link-inventory {
+  color: #fff;
+  text-decoration: none;
+  padding: 5px 10px;
+}
+
+.navbar-link-inventory:hover {
+  background-color: #fd7c04;
+  border-radius: 5px;
+}
 .edit-inventory-container {
     display: flex;
     flex-direction: column;
@@ -45,7 +81,7 @@
     width: 100%;
     padding: 12px;
     font-size: 16px;
-    background-color: #007bff;
+    background-color: #853002;
     color: #fff;
     border: none;
     border-radius: 6px;
@@ -54,15 +90,15 @@
   }
   
   .edit-inventory-form button:hover {
-    background-color: #0056b3;
+    background-color: #31da3f;
   }
   
   .edit-inventory-form .cancel-button {
     margin-top: 10px;
-    background-color: #ccc;
+    background-color: #fd7c04;
   }
   
   .edit-inventory-form .cancel-button:hover {
-    background-color: #999;
+    background-color: #f52a2a;
   }
   

@@ -76,19 +76,23 @@ const Cart = () => {
     calculateTotal();
   };
 
-  const handleDecreaseItem = (productId) => {
+  const handleDecreaseItem = (item) => {
     const updatedCart = cart
-      .map((item) => {
-        if (item.product_id === productId) {
-          if (item.quantity_order > 1) {
-            return { ...item, quantity_order: item.quantity_order - 1 };
+      .map((cartItem) => {
+        if (
+          cartItem.product_id === item.product_id &&
+          cartItem.variant_type === item.variant_type &&
+          cartItem.size_name === item.size_name
+        ) {
+          if (cartItem.quantity_order > 1) {
+            return { ...cartItem, quantity_order: cartItem.quantity_order - 1 };
           } else {
             return null;
           }
         }
-        return item;
+        return cartItem;
       })
-      .filter((item) => item !== null);
+      .filter((cartItem) => cartItem !== null);
 
     setCart(updatedCart);
     calculateTotal(); // Recalculate total after updating cart
@@ -122,6 +126,8 @@ const Cart = () => {
       return;
     }
 
+    const order_date = new Date().toLocaleString();
+
     const formattedCart = cart.map((item) => ({
       customer_name: customerName,
       payment_method: paymentMethod,
@@ -130,22 +136,66 @@ const Cart = () => {
       variant_type: item.variant_type,
       size_name: item.size_name,
       quantity_order: item.quantity_order,
+      OrderDate:order_date,
       price: item.price,
       total_price: item.price * item.quantity_order, // Calculate total price for the item
     }));
-
+    const totalAmount = formattedCart.reduce(
+      (acc, item) => acc + item.total_price,
+      0
+    );
     axios
       .post("http://localhost:5000/api/add-order", {
         orders: formattedCart,
-        total_amount: total,
+        total_amount: totalAmount,
       })
       .then((response) => {
         console.log(response.data);
+
+        // Create a printable receipt element
+        const receiptElement = document.createElement("div");
+        receiptElement.innerHTML = `
+        <div className= "Receipt">
+        <h2>------------------------------</h2>
+          <h2>Teras Kopi</h2>
+          
+        <h2>------------------------------</h2>
+          <br>
+          ${formattedCart
+            .map(
+              (item) => `
+                <div>
+                  <h3>${item.product_name} (${item.variant_type}) x ${item.quantity_order} Rp.${item.total_price}</h3>
+                </div>
+              `
+            )
+            .join("")}
+            <br>
+        <h2>------------------------------</h2>
+          <p>Order Date : ${order_date}</p>
+          <p>Customer Name: ${customerName}</p>
+          <p>Payment: ${paymentMethod}</p>
+          <p><strong>Total: Rp.${totalAmount}</strong></p>
+          <h2>Terima Kasih</h2>
+          <p>Jl.Panorama 54 GegerKalong Bandung JawaBarat</p>
+        </div>
+          
+        `;
+
+        // Add the receipt element to the page
+        document.body.appendChild(receiptElement);
+
+        // Print the receipt element
+        window.print();
+
+        // Remove the receipt element from the page
+        document.body.removeChild(receiptElement);
+
+        // Reset the cart and other states
         setCart([]);
         setTotal(0);
         setCustomerName("");
         setPaymentMethod("");
-        window.print();
       })
       .catch((error) => {
         console.error(error);
@@ -190,6 +240,13 @@ const Cart = () => {
             >
               Order Details
             </Link>
+            <Link
+              className={styles["navbar-link-inventory"]}
+              to={"/CashierMenu"}
+            >
+              {" "}
+              Menu
+            </Link>
             <Link className={styles["navbar-link-inventory"]} to={"/cashier"}>
               {" "}
               logOut
@@ -197,7 +254,7 @@ const Cart = () => {
           </nav>
         </div>
       </header>
-      <h1>Menu</h1>
+      <h1 className={styles["Menu"]}>Menu</h1>
       <div className={styles["wrap-all"]}>
         <div className={styles["wrap-menu"]}>
           <div className={styles["menu-container"]}>
@@ -274,7 +331,8 @@ const Cart = () => {
           </div>
         </div>
         <div className={styles["cart-wrap"]}>
-          <h2>Cart</h2>
+          <h1>Teras Kopi</h1>
+          <h2 style={{ color: "white" }}>Cart</h2>
           <ul>
             {cart.map((item) => (
               <div
@@ -302,7 +360,7 @@ const Cart = () => {
                   <button
                     className="fa-solid fa-minus"
                     style={{ cursor: "pointer" }}
-                    onClick={() => handleDecreaseItem(item.product_id)}
+                    onClick={() => handleDecreaseItem(item)}
                   ></button>
                   <button
                     onClick={() =>
@@ -334,7 +392,7 @@ const Cart = () => {
           </p>
 
           <div className={styles["wrap-checkout"]}>
-            <h3>Checkout</h3>
+            <h3 style={{ color: "white" }}>Checkout</h3>
             <input
               type="text"
               placeholder="Customer Name"
@@ -352,7 +410,9 @@ const Cart = () => {
               <option value="Cash">Cash</option>
               <option value="QRIS">QRIS</option>
             </select>
-            <button onClick={handleCheckout} className={styles["btn-checkout"]}>Checkout</button>
+            <button onClick={handleCheckout} className={styles["btn-checkout"]}>
+              Checkout
+            </button>
           </div>
         </div>
       </div>

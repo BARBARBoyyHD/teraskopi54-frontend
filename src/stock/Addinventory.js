@@ -1,6 +1,7 @@
 import styles from "./Addinventory.module.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Addinventory = () => {
   const [item_name, setItemName] = useState("");
@@ -45,40 +46,64 @@ const Addinventory = () => {
 
   return (
     <div className="Addinventory">
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="itemName">Item Name:</label>
-        <input
-          type="text"
-          id="itemName"
-          name="itemName"
-          value={item_name}
-          onChange={(e) => setItemName(e.target.value)}
-          required
-        />
+      <header className={styles["navbar-inventory"]}>
+        <div className={styles["navbar-content-inventory"]}>
+          <h1 className={styles["navbar-title-inventory"]}>TerasKopi54</h1>
+          <nav className={styles["navbar-links-inventory"]}>
+            <Link className={styles["navbar-link-inventory"]} to="/inventory">
+              Stock
+            </Link>
 
-        <label htmlFor="quantity">Quantity:</label>
-        <input
-          type="number"
-          id="quantity"
-          name="quantity"
-          value={quantity}
-          onChange={(e) => setQuantity(e.target.value)}
-          required
-        />
-
-        <label htmlFor="pricePerPcs">Price/pcs:</label>
-        <input
-          type="number"
-          id="pricePerPcs"
-          name="pricePerPcs"
-          value={price_per_pcs}
-          onChange={(e) => setPricePerPcs(e.target.value)}
-          required
-        />
-
-        <button type="submit">Add Item</button>
-      </form>
-      <p>{message}</p>
+            <Link className={styles["navbar-link-inventory"]} to={"/stock"}>
+              {" "}
+              Logout
+            </Link>
+          </nav>
+        </div>
+      </header>
+      <div className={styles["wrap-form"]}>
+        <form
+          onSubmit={handleSubmit}
+          encType="multipart/form-data"
+          className={styles["product-form"]}
+        >
+          <div className="form-group">
+            <label>Item Name:</label>
+            <input
+              type="text"
+              value={item_name}
+              onChange={(e) => setItemName(e.target.value)}
+              required
+              className={styles["form-control"]}
+            />
+          </div>
+          <div className="form-group">
+            <label>Quantity :</label>
+            <input
+              type="text"
+              value={quantity}
+              onChange={(e) => setQuantity(e.target.value)}
+              required
+              className={styles["form-control"]}
+            />
+          </div>
+          <div className="form-group">
+            <label>Price:</label>
+            <input
+              type="text"
+              value={price_per_pcs}
+              onChange={(e) => setPricePerPcs(e.target.value)}
+              required
+              className={styles["form-control"]}
+            />
+          </div>
+         
+          <button type="submit" className={styles["btn-primary"]}>
+            Add Product
+          </button>
+        </form>
+        <p className="message">{message}</p>
+      </div>
     </div>
   );
 };

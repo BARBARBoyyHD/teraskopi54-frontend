@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import styles from "../cashier/AddProduct.module.css";
 
 function AddProductForm() {
   const [productName, setProductName] = useState("");
@@ -39,79 +41,117 @@ function AddProductForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} encType="multipart/form-data">
-      <label>
-        Product Name:
-        <input
-          type="text"
-          value={productName}
-          onChange={(e) => setProductName(e.target.value)}
-          required
-        />
-      </label>
-      <br />
-      <label>
-        Product Category:
-        <input
-          type="text"
-          value={productCategory}
-          onChange={(e) => setProductCategory(e.target.value)}
-        />
-      </label>
-      <br />
-      <label>
-        Hot Price:
-        <input
-          type="number"
-          value={hotPrice}
-          onChange={(e) => setHotPrice(e.target.value)}
-          required
-        />
-      </label>
-      <br />
-      <label>
-        Cold Price:
-        <input
-          type="number"
-          value={coldPrice}
-          onChange={(e) => setColdPrice(e.target.value)}
-          required
-        />
-      </label>
-      <br />
-      <label>
-        Large Size Price:
-        <input
-          type="number"
-          value={largeSizePrice}
-          onChange={(e) => setLargeSizePrice(e.target.value)}
-          required
-        />
-      </label>
-      <br />
-      <label>
-        Small Size Price:
-        <input
-          type="number"
-          value={smallSizePrice}
-          onChange={(e) => setSmallSizePrice(e.target.value)}
-          required
-        />
-      </label>
-      <br />
-      <label>
-        Image:
-        <input
-          type="file"
-          accept="image/*"
-          name="image"
-          onChange={(e) => setImage(e.target.files[0])}
-          required
-        />
-      </label>
-      <br />
-      <button type="submit">Add Product</button>
-    </form>
+    <div>
+      <header className={styles["navbar-inventory"]}>
+        <div className={styles["navbar-content-inventory"]}>
+          <h1 className={styles["navbar-title-inventory"]}>TerasKopi54</h1>
+          <nav className={styles["navbar-links-inventory"]}>
+            <Link className={styles["navbar-link-inventory"]} to="/AddProduct">
+              Add Product
+            </Link>
+            <Link className={styles["navbar-link-inventory"]} to={"/Product"}>
+              Product List
+            </Link>
+            <Link
+              className={styles["navbar-link-inventory"]}
+              to="/OrderDetails"
+            >
+              Order Details
+            </Link>
+            <Link
+              className={styles["navbar-link-inventory"]}
+              to={"/CashierMenu"}
+            >
+              {" "}
+              Menu
+            </Link>
+            <Link className={styles["navbar-link-inventory"]} to={"/cashier"}>
+              {" "}
+              logOut
+            </Link>
+          </nav>
+        </div>
+      </header>
+      <form
+        onSubmit={handleSubmit}
+        encType="multipart/form-data"
+        className={styles["product-form"]}
+      >
+        <div className="form-group">
+          <label>Product Name:</label>
+          <input
+            type="text"
+            value={productName}
+            onChange={(e) => setProductName(e.target.value)}
+            required
+            className={styles["form-control"]}
+          />
+        </div>
+        <div className={styles["form-group"]}>
+          <label>Product Category:</label>
+          <input
+            type="text"
+            value={productCategory}
+            onChange={(e) => setProductCategory(e.target.value)}
+            className={styles["form-control"]}
+          />
+        </div>
+        <div className={styles["form-group"]}>
+          <label>Hot Price:</label>
+          <input
+            type="number"
+            value={hotPrice}
+            onChange={(e) => setHotPrice(e.target.value)}
+            required
+            className={styles["form-control"]}
+          />
+        </div>
+        <div className={styles["form-group"]}>
+          <label>Cold Price:</label>
+          <input
+            type="number"
+            value={coldPrice}
+            onChange={(e) => setColdPrice(e.target.value)}
+            required
+            className={styles["form-control"]}
+          />
+        </div>
+        <div className={styles["form-group"]}>
+          <label>Large Size Price:</label>
+          <input
+            type="number"
+            value={largeSizePrice}
+            onChange={(e) => setLargeSizePrice(e.target.value)}
+            required
+            className={styles["form-control"]}
+          />
+        </div>
+        <div className={styles["form-group"]}>
+          <label>Small Size Price:</label>
+          <input
+            type="number"
+            value={smallSizePrice}
+            onChange={(e) => setSmallSizePrice(e.target.value)}
+            required
+            className={styles["form-control"]}
+          />
+        </div>
+        <div className={styles["form-group"]}>
+          <label>Image:</label>
+          <input
+            type="file"
+            accept="image/*"
+            name="image"
+            onChange={(e) => setImage(e.target.files[0])}
+            required
+            className={styles["form-control"]}
+          />
+        </div>
+        <button type="submit" className={styles["btn-primary"]}>
+          Add Product
+        </button>
+      </form>
+    </div>
   );
 }
 

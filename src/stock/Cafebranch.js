@@ -152,79 +152,82 @@ const Cafebranch = () => {
         <div className={styles["navbar-content-inventory"]}>
           <h1 className={styles["navbar-title-inventory"]}>Cafe branch</h1>
           <nav className={styles["navbar-links-inventory"]}>
+            <Link to="/Inventory" className={styles["navbar-link-inventory"]}>
+              Stock
+            </Link>
             <Link to="/" className={styles["navbar-link-inventory"]}>
               Logout
-            </Link>
-            <Link to="/Inventory" className={styles["navbar-link-inventory"]}>
-              Inventory
             </Link>
           </nav>
         </div>
       </header>
 
       <div className="bg-for-wrapp">
-        <form
-          onSubmit={
-            editingBranch
-              ? (e) => {
-                  e.preventDefault();
-                  handleEdit();
-                }
-              : handleSubmit
-          }
-          className={styles["formAdd"]}
-        >
-          <label className={styles["label"]}>Branch Name: </label>
-          <input
-            type="text"
-            className={styles["inputCafe"]}
-            value={editingBranch ? editingBranch.branch_name : branch_name}
-            onChange={(e) =>
+        <div className={styles["wrap-form"]}>
+          <form
+            onSubmit={
               editingBranch
-                ? setEditingBranch({
-                    ...editingBranch,
-                    branch_name: e.target.value,
-                  })
-                : setBranch_name(e.target.value)
+                ? (e) => {
+                    e.preventDefault();
+                    handleEdit();
+                  }
+                : handleSubmit
             }
-            required
-          />
-          <label className={styles["label"]}>Address:</label>
-          <input
-            type="text"
-            className={styles["inputCafe"]}
-            value={
-              editingBranch ? editingBranch.address_branch : address_branch
-            }
-            onChange={(e) =>
-              editingBranch
-                ? setEditingBranch({
-                    ...editingBranch,
-                    address_branch: e.target.value,
-                  })
-                : setAddress_branch(e.target.value)
-            }
-            required
-          />
-          <label className={styles["label"]}>Contact:</label>
-          <input
-            type="number"
-            className={styles["inputCafe"]}
-            value={editingBranch ? editingBranch.contact : contact}
-            onChange={(e) =>
-              editingBranch
-                ? setEditingBranch({
-                    ...editingBranch,
-                    contact: e.target.value,
-                  })
-                : setContact(e.target.value)
-            }
-            required
-          />
-          <button type="submit" className={styles.addBranch}>
-            {editingBranch ? "Update" : "Add"}
-          </button>
-        </form>
+            className={styles["formAdd"]}
+          >
+            <label className={styles["label"]}>Branch Name: </label>
+            <input
+              type="text"
+              className={styles["inputCafe"]}
+              value={editingBranch ? editingBranch.branch_name : branch_name}
+              onChange={(e) =>
+                editingBranch
+                  ? setEditingBranch({
+                      ...editingBranch,
+                      branch_name: e.target.value,
+                    })
+                  : setBranch_name(e.target.value)
+              }
+              required
+            />
+            <label className={styles["label"]}>Address:</label>
+            <input
+              type="text"
+              className={styles["inputCafe"]}
+              value={
+                editingBranch ? editingBranch.address_branch : address_branch
+              }
+              onChange={(e) =>
+                editingBranch
+                  ? setEditingBranch({
+                      ...editingBranch,
+                      address_branch: e.target.value,
+                    })
+                  : setAddress_branch(e.target.value)
+              }
+              required
+            />
+            <label className={styles["label"]}>Contact:</label>
+            <input
+              type="number"
+              className={styles["inputCafe"]}
+              value={editingBranch ? editingBranch.contact : contact}
+              onChange={(e) =>
+                editingBranch
+                  ? setEditingBranch({
+                      ...editingBranch,
+                      contact: e.target.value,
+                    })
+                  : setContact(e.target.value)
+              }
+              required
+            />
+            <button type="submit" className={styles.addBranch}>
+              {editingBranch ? "Update" : "Add"}
+            </button>
+          </form>
+        </div>
+
         <div className={styles["main-content"]}>
           <div className={styles["bg-stock"]}>
             <div className={styles["search-add"]}>

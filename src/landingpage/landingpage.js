@@ -33,21 +33,21 @@ const landingpage = () => {
       <section className="enjoy">
         <div className="wrap-image">
           <div className="img-rate"></div>
-          <h1>200</h1>
+          <h1 className="rating">200</h1>
           <p className="desc">Transport</p>
         </div>
         <div className="wrap-image">
           <div className="img-rate2"></div>
-          <h1>200</h1>
+          <h1 className="rating">200</h1>
           <p className="desc">Customer Satisfaction</p>
         </div>
         <div className="wrap-image">
           <div className="img-rate3"></div>
-          <h1>200</h1>
+          <h1 className="rating">200</h1>
           <p className="desc">Recommend by Customer</p>
         </div>
       </section>
-      <section className="about">
+      <section className="about" id="about">
         <div className="wrap-about">
           <div className="description">
             <h1 className="about-us-title">About us</h1>
@@ -85,7 +85,7 @@ const landingpage = () => {
           <div className="image"></div>
         </div>
       </section>
-      <section className="contact">
+      <section className="contact" id="contact">
         <h1>Follow us </h1>
         <div className="wrap-contact">
           <div className="teras-kopi">

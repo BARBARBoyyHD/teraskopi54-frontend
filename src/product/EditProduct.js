@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import styles from "./EditProduct.module.css";
+import { Link } from "react-router-dom";
 
 const EditProduct = () => {
   const { id } = useParams(); // Get id from the URL params
@@ -65,86 +67,130 @@ const EditProduct = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} encType="multipart/form-data">
-      <label>
-        Product Name:
-        <input
-          type="text"
-          value={productName}
-          onChange={(e) => setProductName(e.target.value)}
-          required
-        />
-      </label>
-      <br />
-      <label>
-        Product Category:
-        <input
-          type="text"
-          value={productCategory}
-          onChange={(e) => setProductCategory(e.target.value)}
-        />
-      </label>
-      <br />
-      <label>
-        Hot Price:
-        <input
-          type="number"
-          value={hotPrice}
-          onChange={(e) => setHotPrice(e.target.value)}
-          required
-        />
-      </label>
-      <br />
-      <label>
-        Cold Price:
-        <input
-          type="number"
-          value={coldPrice}
-          onChange={(e) => setColdPrice(e.target.value)}
-          required
-        />
-      </label>
-      <br />
-      <label>
-        Large Size Price:
-        <input
-          type="number"
-          value={largeSizePrice}
-          onChange={(e) => setLargeSizePrice(e.target.value)}
-          required
-        />
-      </label>
-      <br />
-      <label>
-        Small Size Price:
-        <input
-          type="number"
-          value={smallSizePrice}
-          onChange={(e) => setSmallSizePrice(e.target.value)}
-          required
-        />
-      </label>
-      <br />
-      <label>
-        Image:
-        <input
-          type="file"
-          accept="image/*"
-          name="image"
-          onChange={(e) => setImage(e.target.files[0])} // Set the new image
-        />
-      </label>
-      <br />
-      {/* Display the existing image */}
-      {existingImageUrl && (
-        <img
-          src={`http://localhost:5000/uploads/${existingImageUrl}`} // Corrected to use image_url from the database
-          width="100"
-        />
-      )}
-      <br />
-      <button type="submit">Update Product</button>
-    </form>
+    <div>
+      <header className={styles["navbar-inventory"]}>
+        <div className={styles["navbar-content-inventory"]}>
+          <h1 className={styles["navbar-title-inventory"]}>TerasKopi54</h1>
+          <nav className={styles["navbar-links-inventory"]}>
+            <Link className={styles["navbar-link-inventory"]} to="/AddProduct">
+              Add Product
+            </Link>
+            <Link className={styles["navbar-link-inventory"]} to={"/Product"}>
+              Product List
+            </Link>
+            <Link
+              className={styles["navbar-link-inventory"]}
+              to="/OrderDetails"
+            >
+              Order Details
+            </Link>
+            <Link
+              className={styles["navbar-link-inventory"]}
+              to={"/CashierMenu"}
+            >
+              {" "}
+              Menu
+            </Link>
+            <Link className={styles["navbar-link-inventory"]} to={"/cashier"}>
+              {" "}
+              logOut
+            </Link>
+          </nav>
+        </div>
+      </header>
+      <div className={styles.container}>
+        <form onSubmit={handleSubmit} encType="multipart/form-data">
+          <label className={styles.label}>
+            Product Name:
+            <input
+              type="text"
+              value={productName}
+              onChange={(e) => setProductName(e.target.value)}
+              required
+              className={styles.input}
+            />
+          </label>
+          <br />
+          <label className={styles.label}>
+            Product Category:
+            <input
+              type="text"
+              value={productCategory}
+              onChange={(e) => setProductCategory(e.target.value)}
+              className={styles.input}
+            />
+          </label>
+          <br />
+          <label className={styles.label}>
+            Hot Price:
+            <input
+              type="number"
+              value={hotPrice}
+              onChange={(e) => setHotPrice(e.target.value)}
+              required
+              className={styles.input}
+            />
+          </label>
+          <br />
+          <label className={styles.label}>
+            Cold Price:
+            <input
+              type="number"
+              value={coldPrice}
+              onChange={(e) => setColdPrice(e.target.value)}
+              required
+              className={styles.input}
+            />
+          </label>
+          <br />
+          <label className={styles.label}>
+            Large Size Price:
+            <input
+              type="number"
+              value={largeSizePrice}
+              onChange={(e) => setLargeSizePrice(e.target.value)}
+              required
+              className={styles.input}
+            />
+          </label>
+          <br />
+          <label className={styles.label}>
+            Small Size Price:
+            <input
+              type="number"
+              value={smallSizePrice}
+              onChange={(e) => setSmallSizePrice(e.target.value)}
+              required
+              className={styles.input}
+            />
+          </label>
+          <br />
+          <label className={styles.label}>
+            Image:
+            <input
+              type="file"
+              accept="image/*"
+              name="image"
+              onChange={(e) => setImage(e.target.files[0])} // Set the new image
+              className={styles.input}
+            />
+          </label>
+          <br />
+          {/* Display the existing image */}
+          {existingImageUrl && (
+            <img
+              src={`http://localhost:5000/uploads/${existingImageUrl}`} // Corrected to use image_url from the database
+              width="100"
+              className={styles.image}
+            />
+          )}
+          <br />
+          <button type="submit" className={styles.button}>
+            Update Product
+          </button>
+        </form>
+      </div>
+    </div>
   );
 };
 

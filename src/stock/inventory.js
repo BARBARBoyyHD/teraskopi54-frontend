@@ -54,7 +54,7 @@ const Inventory = () => {
 
   const columns = [
     {
-      name: "Item Name",
+      name: "Item Name Kg/L/g",
       selector: (row) => row.item_name,
       sortable: true,
       cell: (row) => <div data-label="Item Name">{row.item_name}</div>,
@@ -82,9 +82,10 @@ const Inventory = () => {
     {
       name: "Delete",
       cell: (row) => (
-        <button className={styles.delete} onClick={() => handleDelete(row.item_id)}>
-          
-        </button>
+        <button
+          className={styles.delete}
+          onClick={() => handleDelete(row.item_id)}
+        ></button>
       ),
     },
   ];
@@ -95,11 +96,11 @@ const Inventory = () => {
         <div className={styles["navbar-content-inventory"]}>
           <h1 className={styles["navbar-title-inventory"]}>Inventory</h1>
           <nav className={styles["navbar-links-inventory"]}>
-            <Link to="/stock" className={styles["navbar-link-inventory"]}>
-              Logout
-            </Link>
             <Link to="/Cafebranch" className={styles["navbar-link-inventory"]}>
               Cafe Branch
+            </Link>
+            <Link to="/stock" className={styles["navbar-link-inventory"]}>
+              Logout
             </Link>
           </nav>
         </div>

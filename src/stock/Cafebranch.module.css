@@ -4,6 +4,7 @@
   align-items: center;
   min-height: 100vh;
   justify-content: center;
+  align-items: center;
  
 }
 .bg-for-wrapp{
@@ -17,17 +18,24 @@
   color: white;
 }
 .formAdd {
+  margin-top: 50px;
   display: flex;
-  width: auto;
+  width: 70%;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  gap: 10px;
 }
 
 .label {
   font-size: 14px;
   margin-bottom: 5px;
   color: #333;
+}
+.wrap-form{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .inputCafe {

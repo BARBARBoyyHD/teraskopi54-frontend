@@ -61,6 +61,13 @@ header {
   /* text-transform: uppercase; */
   /* letter-spacing: 2px; */
 }
+.rating{
+  color: black;
+}
+
+html {
+  scroll-behavior: smooth;
+}
 .Quote {
   color: white;
   font-weight: bold;

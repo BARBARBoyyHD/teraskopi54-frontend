@@ -71,6 +71,7 @@
   justify-content: center;
   margin-top: 10px;
   display: flex;
+  gap: 20px;
 }
 
 h1 {
@@ -152,6 +153,6 @@ form {
   color: white;
 }
 
-.cart-wrap{
+.cart-wrap {
   display: none;
 }
