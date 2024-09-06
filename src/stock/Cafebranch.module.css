@@ -221,4 +221,10 @@ td {
     white-space: nowrap;
     text-align: left;
   }
+  .formAdd{
+    display: block;
+  }
+  .navbar-title-inventory{
+    font-size: 20px;
+  }
 }

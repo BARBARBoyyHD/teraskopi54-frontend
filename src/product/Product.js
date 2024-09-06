@@ -6,6 +6,7 @@ import styles from "./Product.module.css";
 const Product = () => {
   const [product, setproduct] = useState([]);
   const [filterText, setFilterText] = useState("");
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     fetch("http://localhost:5000/api/products")
@@ -22,6 +23,10 @@ const Product = () => {
         console.error("Error fetching product:", err); // Handle any errors
       });
   }, []);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   const handleDelete = (id) => {
     fetch(`http://localhost:5000/api/products/${id}`, {
@@ -114,14 +119,25 @@ const Product = () => {
 
   return (
     <div className={styles["container"]}>
-      <header className={styles["navbar-inventory"]}>
+     <header className={styles["navbar-inventory"]}>
         <div className={styles["navbar-content-inventory"]}>
           <h1 className={styles["navbar-title-inventory"]}>TerasKopi54</h1>
-          <nav className={styles["navbar-links-inventory"]}>
-          <Link className={styles["navbar-link-inventory"]} to="/AddProduct">
+          <nav
+            className={`${styles["navigation"]} ${
+              isMenuOpen ? styles["open"] : ""
+            }`}
+          >
+            <div className={styles["wrap-close"]}>
+              <i
+                className={`${styles["close-btn"]} fas fa-times`}
+                onClick={toggleMenu}
+              ></i>
+            </div>
+
+            <Link className={styles["navbar-link-inventory"]} to="/AddProduct">
               Add Product
             </Link>
-            <Link className={styles["navbar-link-inventory"]} to={"/Product"}>
+            <Link className={styles["navbar-link-inventory"]} to="/Product">
               Product List
             </Link>
             <Link
@@ -130,20 +146,25 @@ const Product = () => {
             >
               Order Details
             </Link>
-            <Link className={styles["navbar-link-inventory"]} to={"/CashierMenu"}>
-              {" "}
+            <Link className={styles["navbar-link-inventory"]} to="/CashierMenu">
               Menu
             </Link>
-            <Link className={styles["navbar-link-inventory"]} to={"/cashier"}>
-              {" "}
-              logOut
+            <Link className={styles["navbar-link-inventory"]} to="/cashier">
+              LogOut
             </Link>
-          
           </nav>
+          <div
+            className={`${styles["hamburger"]} ${
+              isMenuOpen ? styles["open"] : ""
+            }`}
+            onClick={toggleMenu}
+          >
+            <i className={`${styles["menu-btn"]} fas fa-bars`}></i>
+          </div>
         </div>
       </header>
       <div className={styles["main-content"]}>
-        <h1>All Stock</h1>
+        <h1 style={{ textAlign: "center" ,color:"black"}}>All Product</h1>
         <div className={styles["bg-stock"]}>
           <div className={styles["search-add"]}>
             <button className={styles["add-inventory"]}>

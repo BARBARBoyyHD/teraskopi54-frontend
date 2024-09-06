@@ -14,6 +14,7 @@ const EditProduct = () => {
   const [smallSizePrice, setSmallSizePrice] = useState("");
   const [image, setImage] = useState(null); // This holds the new image file
   const [existingImageUrl, setExistingImageUrl] = useState(""); // This holds the existing image URL from the database
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
 
   // Fetch product data using useEffect
@@ -33,6 +34,9 @@ const EditProduct = () => {
         console.error("Error fetching product data:", error);
       });
   }, [id]);
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -71,11 +75,22 @@ const EditProduct = () => {
       <header className={styles["navbar-inventory"]}>
         <div className={styles["navbar-content-inventory"]}>
           <h1 className={styles["navbar-title-inventory"]}>TerasKopi54</h1>
-          <nav className={styles["navbar-links-inventory"]}>
+          <nav
+            className={`${styles["navigation"]} ${
+              isMenuOpen ? styles["open"] : ""
+            }`}
+          >
+            <div className={styles["wrap-close"]}>
+              <i
+                className={`${styles["close-btn"]} fas fa-times`}
+                onClick={toggleMenu}
+              ></i>
+            </div>
+
             <Link className={styles["navbar-link-inventory"]} to="/AddProduct">
               Add Product
             </Link>
-            <Link className={styles["navbar-link-inventory"]} to={"/Product"}>
+            <Link className={styles["navbar-link-inventory"]} to="/Product">
               Product List
             </Link>
             <Link
@@ -84,22 +99,26 @@ const EditProduct = () => {
             >
               Order Details
             </Link>
-            <Link
-              className={styles["navbar-link-inventory"]}
-              to={"/CashierMenu"}
-            >
-              {" "}
+            <Link className={styles["navbar-link-inventory"]} to="/CashierMenu">
               Menu
             </Link>
-            <Link className={styles["navbar-link-inventory"]} to={"/cashier"}>
-              {" "}
-              logOut
+            <Link className={styles["navbar-link-inventory"]} to="/cashier">
+              LogOut
             </Link>
           </nav>
+          <div
+            className={`${styles["hamburger"]} ${
+              isMenuOpen ? styles["open"] : ""
+            }`}
+            onClick={toggleMenu}
+          >
+            <i className={`${styles["menu-btn"]} fas fa-bars`}></i>
+          </div>
         </div>
       </header>
       <div className={styles.container}>
-        <form onSubmit={handleSubmit} encType="multipart/form-data">
+        <h1 style={{ textAlign: "center" , color:"black"}}>Edit your product</h1>
+        <form className={styles["form"]} onSubmit={handleSubmit} encType="multipart/form-data">
           <label className={styles.label}>
             Product Name:
             <input

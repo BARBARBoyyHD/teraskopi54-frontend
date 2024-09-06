@@ -12,6 +12,7 @@ function AddProductForm() {
   const [largeSizePrice, setLargeSizePrice] = useState("");
   const [smallSizePrice, setSmallSizePrice] = useState("");
   const [image, setImage] = useState(null);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
@@ -39,17 +40,31 @@ function AddProductForm() {
       alert("Error adding product. Please try again.");
     }
   };
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   return (
     <div>
-      <header className={styles["navbar-inventory"]}>
+       <header className={styles["navbar-inventory"]}>
         <div className={styles["navbar-content-inventory"]}>
           <h1 className={styles["navbar-title-inventory"]}>TerasKopi54</h1>
-          <nav className={styles["navbar-links-inventory"]}>
+          <nav
+            className={`${styles["navigation"]} ${
+              isMenuOpen ? styles["open"] : ""
+            }`}
+          >
+            <div className={styles["wrap-close"]}>
+              <i
+                className={`${styles["close-btn"]} fas fa-times`}
+                onClick={toggleMenu}
+              ></i>
+            </div>
+
             <Link className={styles["navbar-link-inventory"]} to="/AddProduct">
               Add Product
             </Link>
-            <Link className={styles["navbar-link-inventory"]} to={"/Product"}>
+            <Link className={styles["navbar-link-inventory"]} to="/Product">
               Product List
             </Link>
             <Link
@@ -58,20 +73,24 @@ function AddProductForm() {
             >
               Order Details
             </Link>
-            <Link
-              className={styles["navbar-link-inventory"]}
-              to={"/CashierMenu"}
-            >
-              {" "}
+            <Link className={styles["navbar-link-inventory"]} to="/CashierMenu">
               Menu
             </Link>
-            <Link className={styles["navbar-link-inventory"]} to={"/cashier"}>
-              {" "}
-              logOut
+            <Link className={styles["navbar-link-inventory"]} to="/cashier">
+              LogOut
             </Link>
           </nav>
+          <div
+            className={`${styles["hamburger"]} ${
+              isMenuOpen ? styles["open"] : ""
+            }`}
+            onClick={toggleMenu}
+          >
+            <i className={`${styles["menu-btn"]} fas fa-bars`}></i>
+          </div>
         </div>
       </header>
+      <h1 style={{ textAlign: "center" ,color:"black"}}>Add your Product</h1>
       <form
         onSubmit={handleSubmit}
         encType="multipart/form-data"

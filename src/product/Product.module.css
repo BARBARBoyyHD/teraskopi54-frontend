@@ -1,128 +1,257 @@
-.container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .navbar-inventory {
-    background-color: #853002;
-    padding: 10px 20px;
-    color: #fff;
-  }
-  
-  .navbar-content-inventory {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .navbar-title-inventory {
-    margin: 0;
-  }
-  
-  .navbar-links-inventory {
-    display: flex;
-    gap: 15px;
-  }
-  
-  .navbar-link-inventory {
-    color: #fff;
-    text-decoration: none;
-    padding: 5px 10px;
-  }
-  
-  .navbar-link-inventory:hover {
-    background-color: #fd7c04;
-    border-radius: 5px;
-  }
-  .link {
-    text-decoration: none;
-    color: white;
-  }
+  background-color: #853002;
+  padding: 10px 20px;
+  color: #fff;
+}
 
-  .edit {
-    width: 20px;
-    height: 20px;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    border: none;
-    background-image: url("/src/asset/edit.png");
-    cursor: pointer;
+.navbar-content-inventory {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-title-inventory {
+  margin: 0;
+}
+
+.navbar-links-inventory {
+  display: flex;
+  gap: 15px;
+}
+
+.navbar-link-inventory {
+  color: #fff;
+  text-decoration: none;
+  padding: 5px 10px;
+}
+
+.navbar-link-inventory:hover {
+  background-color: #fd7c04;
+  border-radius: 5px;
+}
+.link {
+  text-decoration: none;
+  color: white;
+}
+
+.edit {
+  width: 20px;
+  height: 20px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border: none;
+  background-image: url("/src/asset/edit.png");
+  cursor: pointer;
+}
+.delete {
+  width: 20px;
+  height: 20px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border: none;
+  background-image: url("/src/asset/delete.png");
+  cursor: pointer;
+}
+
+.main-content {
+  width: auto;
+  height: auto;
+  justify-content: center;
+}
+
+table {
+  margin: 20px auto;
+  border-collapse: separate;
+  border-radius: 10px;
+  width: 100%;
+}
+
+table {
+  border: 2px solid #853002;
+  border-radius: 10px;
+}
+
+th,
+td {
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+}
+.search-add {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 5px;
+}
+.add-inventory {
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: #853002;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+}
+.bg-stock {
+  width: auto;
+  padding: 5px;
+  border: 2px solid #853002;
+  border-radius: 10px;
+  background-color: white;
+}
+.search-input {
+  padding: 10px;
+  border: 2px solid #853002;
+  border-radius: 10px;
+}
+.data-table-wrapper table {
+  border-radius: 10px; /* Adjust the value as needed */
+  overflow: hidden; /* This ensures the content inside the table respects the border radius */
+  border: 1px solid black;
+}
+
+.data-table-wrapper .rdt_TableHead,
+.data-table-wrapper .rdt_TableBody {
+  border-radius: 10px; /* Apply the same border radius to the header and body */
+}
+
+.data-table-wrapper .rdt_TableRow {
+  border-radius: 10px; /* Apply border radius to individual rows */
+}
+.hamburger {
+  display: none; /* Hidden by default */
+  font-size: 25px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.hamburger .menu-btn {
+  display: block;
+  /* Style for the menu button */
+}
+
+.hamburger .close-btn {
+  display: none; /* Hidden by default */
+  /* Style for the close button */
+}
+.close-btn{
+  display: none;
+}
+@media (max-width: 1024px) {
+  .navbar-title-inventory {
+    font-size: 20px;
   }
-  .delete {
-    width: 20px;
-    height: 20px;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    border: none;
-    background-image: url("/src/asset/delete.png");
-    cursor: pointer;
-  }
-  
-  .main-content {
-    width: auto;
-    height: auto;
+}
+@media (max-width: 400px) {
+  /* Hide navbar links on small screens */
+  .navigation {
+    display: none;
+    align-items: center;
     justify-content: center;
   }
-  
-  table {
-    margin: 20px auto;
-    border-collapse: separate;
-    border-radius: 10px;
-    width: 100%;
-  }
-  
-  table {
-    border: 2px solid #853002;
-    border-radius: 10px;
-  }
-  
-  th,
-  td {
-    padding: 10px;
-    border-radius: 10px;
-    text-align: center;
-  }
-  .search-add {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-    margin-bottom: 5px;
-  }
-  .add-inventory {
-    border: none;
-    border-radius: 10px;
-    padding: 10px;
-    background-color: #853002;
-    font-weight: bold;
-    color: white;
-    cursor: pointer;
-  }
-  .bg-stock {
+  .navbar-inventory {
     width: auto;
-    padding: 5px;
-    border: 2px solid #853002;
-    border-radius: 10px;
-    background-color: white;
   }
-  .search-input {
-    padding: 10px;
-    border: 2px solid #853002;
-    border-radius: 10px;
+  .hamburger {
+    display: flex;
   }
-  .data-table-wrapper table {
-    border-radius: 10px; /* Adjust the value as needed */
-    overflow: hidden; /* This ensures the content inside the table respects the border radius */
-    border: 1px solid black;
+  .close-btn{
+    display: block;
+  }
+
+  .navigation {
+    display: none; /* Hide navigation links by default on small screens */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color:#853002;
+    background-size: cover;
+    background-position: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    transition: all 0.3s ease;
+  }
+
+  .navigation.open {
+    display: flex; /* Show navigation links when menu is open */
+  }
+
+  .hamburger.open .menu-btn {
+    display: none; /* Hide menu button when menu is open */
+  }
+
+  .hamburger.open .close-btn {
+    display: block; /* Show close button when menu is open */
+  }
+
+  .navigation .navbar-link-inventory {
+    margin-bottom: 50px;
+    font-weight: bold;
+    background-color: #ff5405;
+    border-radius: 7px;
+    /* Add any other styles for the links */
+  }
+  /* Style cart component on small screens */
+  .cart-wrap {
+    display: block; /* Show cart component on small screens */
+    width: 100%; /* Make cart component full-width */
+    padding: 10px; /* Add some padding to cart component */
+  }
+
+  .cart-item {
+    width: 100%; /* Make cart item full-width */
+    padding: 10px; /* Add some padding to cart item */
+    border-bottom: 1px solid #ddd; /* Add a border to separate cart items */
+  }
+
+  .cart-item img {
+    width: 30px; /* Make image smaller on small screens */
+    height: 30px; /* Make image smaller on small screens */
+  }
+
+  h1 {
+    font-size: 16px; /* Make font size smaller on small screens */
+  }
+
+  .button-container {
+    display: flex; /* Make button container a flexbox */
+    justify-content: space-between; /* Space out buttons evenly */
+  }
+
+  .wrap-checkout {
+    padding: 10px; /* Add some padding to checkout container */
+  }
+
+  .customer-name {
+    width: 80%; /* Make customer name input full-width */
+    padding: 10px; /* Add some padding to customer name input */
+  }
+
+  .payment-method {
+    width: 100%; /* Make payment method select full-width */
+    padding: 10px; /* Add some padding to payment method select */
+  }
+
+  .btn-checkout {
+    width: 100%; /* Make checkout button full-width */
+    padding: 10px; /* Add some padding to checkout button */
+  }
+  .wrap-close {
+    display: flex;
+    justify-content: flex-end; /* Align items to the end of the flex container */
+    margin-bottom: 10px;
   }
   
-  .data-table-wrapper .rdt_TableHead,
-  .data-table-wrapper .rdt_TableBody {
-    border-radius: 10px; /* Apply the same border radius to the header and body */
-  }
-  
-  .data-table-wrapper .rdt_TableRow {
-    border-radius: 10px; /* Apply border radius to individual rows */
-  }
+}

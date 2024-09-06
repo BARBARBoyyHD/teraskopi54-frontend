@@ -76,3 +76,12 @@
   text-decoration: none;
   color: white;
 }
+
+@media (max-width: 768px) {
+  .navbar-link-inventory{
+    gap: 0px;
+  }
+  .navbar-title-inventory{
+    font-size: 20px;
+  }
+}

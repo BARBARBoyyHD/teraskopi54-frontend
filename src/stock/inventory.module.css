@@ -167,4 +167,7 @@ td {
     white-space: nowrap;
     text-align: left;
   }
+  .navbar-title-inventory{
+    font-size: 20px;
+  }
 }

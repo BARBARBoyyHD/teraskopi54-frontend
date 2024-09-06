@@ -237,6 +237,12 @@ p {
   font-weight: bold;
 }
 
+@media (max-width: 1024px) {
+  .about{
+    min-height: 40vh;
+  }
+}
+
 @media (max-width: 768px) {
   .navigation {
     display: none;
@@ -316,6 +322,7 @@ p {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top: 0;
   }
   .wrap-contact {
     display: flex;
@@ -335,6 +342,19 @@ p {
   }
   .address-detail {
     font-size: 15px;
+  }
+  .contact{
+    margin: auto;
+  }
+  .about{
+    margin-bottom: 0px;
+    min-height: 50vh;
+  }
+  p{
+    font-size: 9px;
+  }
+  .address-detail{
+    font-size: 10px;
   }
 }
 @media (max-width: 480px) {

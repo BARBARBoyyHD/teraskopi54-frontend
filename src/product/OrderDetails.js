@@ -7,6 +7,7 @@ import styles from "./OrderDetails.module.css";
 const OrderDetails = () => {
   const [filterText, setFilterText] = useState("");
   const [OrderDetails, setOrderDetails] = useState([]);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const tableOrder = () => {
     fetch("http://localhost:5000/api/orders")
       .then((res) => res.json())
@@ -21,7 +22,9 @@ const OrderDetails = () => {
         console.log(err);
       });
   };
-
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
   useEffect(() => {
     tableOrder();
   }, []);
@@ -78,14 +81,25 @@ const OrderDetails = () => {
     : [];
   return (
     <div className={styles["container"]}>
-      <header className={styles["navbar-inventory"]}>
+     <header className={styles["navbar-inventory"]}>
         <div className={styles["navbar-content-inventory"]}>
           <h1 className={styles["navbar-title-inventory"]}>TerasKopi54</h1>
-          <nav className={styles["navbar-links-inventory"]}>
+          <nav
+            className={`${styles["navigation"]} ${
+              isMenuOpen ? styles["open"] : ""
+            }`}
+          >
+            <div className={styles["wrap-close"]}>
+              <i
+                className={`${styles["close-btn"]} fas fa-times`}
+                onClick={toggleMenu}
+              ></i>
+            </div>
+
             <Link className={styles["navbar-link-inventory"]} to="/AddProduct">
               Add Product
             </Link>
-            <Link className={styles["navbar-link-inventory"]} to={"/Product"}>
+            <Link className={styles["navbar-link-inventory"]} to="/Product">
               Product List
             </Link>
             <Link
@@ -94,22 +108,25 @@ const OrderDetails = () => {
             >
               Order Details
             </Link>
-            <Link
-              className={styles["navbar-link-inventory"]}
-              to={"/CashierMenu"}
-            >
-              {" "}
+            <Link className={styles["navbar-link-inventory"]} to="/CashierMenu">
               Menu
             </Link>
-            <Link className={styles["navbar-link-inventory"]} to={"/cashier"}>
-              {" "}
-              logOut
+            <Link className={styles["navbar-link-inventory"]} to="/cashier">
+              LogOut
             </Link>
           </nav>
+          <div
+            className={`${styles["hamburger"]} ${
+              isMenuOpen ? styles["open"] : ""
+            }`}
+            onClick={toggleMenu}
+          >
+            <i className={`${styles["menu-btn"]} fas fa-bars`}></i>
+          </div>
         </div>
       </header>
       <div className={styles["main-content"]}>
-        <h1>All Stock</h1>
+        <h1 style={{ textAlign: "center" ,color:"black"}}>Order Details</h1>
         <div className={styles["bg-stock"]}>
           <div className={styles["search-add"]}>
             <input

@@ -75,3 +75,136 @@
 .button:hover {
   background-color: #fd7c04;
 }
+.form{
+  margin-bottom: 20px;
+}
+.hamburger {
+  display: none; /* Hidden by default */
+  font-size: 25px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.hamburger .menu-btn {
+  display: block;
+  /* Style for the menu button */
+}
+
+.hamburger .close-btn {
+  display: none; /* Hidden by default */
+  /* Style for the close button */
+}
+.close-btn{
+  display: none;
+}
+
+@media (max-width:1024px){
+  .navbar-title-inventory{
+    font-size: 20px;
+  }
+}
+@media (max-width: 400px) {
+  /* Hide navbar links on small screens */
+  .navigation {
+    display: none;
+    align-items: center;
+    justify-content: center;
+  }
+  .navbar-inventory {
+    width: auto;
+  }
+  .hamburger {
+    display: block;
+  }
+
+  .close-btn{
+    display: block;
+  }
+  .navigation {
+    display: none; /* Hide navigation links by default on small screens */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color:#853002;
+    background-size: cover;
+    background-position: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    transition: all 0.3s ease;
+  }
+
+  .navigation.open {
+    display: flex; /* Show navigation links when menu is open */
+  }
+
+  .hamburger.open .menu-btn {
+    display: none; /* Hide menu button when menu is open */
+  }
+
+  .hamburger.open .close-btn {
+    display: block; /* Show close button when menu is open */
+  }
+
+  .navigation .navbar-link-inventory {
+    margin-bottom: 50px;
+    font-weight: bold;
+    background-color: #ff5405;
+    border-radius: 7px;
+    /* Add any other styles for the links */
+  }
+  /* Style cart component on small screens */
+  .cart-wrap {
+    display: block; /* Show cart component on small screens */
+    width: 100%; /* Make cart component full-width */
+    padding: 10px; /* Add some padding to cart component */
+  }
+
+  .cart-item {
+    width: 100%; /* Make cart item full-width */
+    padding: 10px; /* Add some padding to cart item */
+    border-bottom: 1px solid #ddd; /* Add a border to separate cart items */
+  }
+
+  .cart-item img {
+    width: 30px; /* Make image smaller on small screens */
+    height: 30px; /* Make image smaller on small screens */
+  }
+
+  h1 {
+    font-size: 16px; /* Make font size smaller on small screens */
+  }
+
+  .button-container {
+    display: flex; /* Make button container a flexbox */
+    justify-content: space-between; /* Space out buttons evenly */
+  }
+
+  .wrap-checkout {
+    padding: 10px; /* Add some padding to checkout container */
+  }
+
+  .customer-name {
+    width: 80%; /* Make customer name input full-width */
+    padding: 10px; /* Add some padding to customer name input */
+  }
+
+  .payment-method {
+    width: 100%; /* Make payment method select full-width */
+    padding: 10px; /* Add some padding to payment method select */
+  }
+
+  .btn-checkout {
+    width: 100%; /* Make checkout button full-width */
+    padding: 10px; /* Add some padding to checkout button */
+  }
+  .wrap-close {
+    display: flex;
+    justify-content: flex-end; /* Align items to the end of the flex container */
+    margin-bottom: 10px;
+  }
+  
+}

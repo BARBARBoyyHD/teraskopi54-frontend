@@ -1,157 +1,178 @@
 /* Assuming this is in a file like `StockLogin.module.css` */
 .stock {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    background: url("/src/asset/login.jpeg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
-  
-  .navbar-inventory {
-    background-color: #853002;
-    padding: 10px 20px;
-    color: #fff;
-  }
-  
-  .navbar-content-inventory {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .navbar-title-inventory {
-    margin: 0;
-  }
-  
-  .navbar-links-inventory {
-    display: flex;
-    gap: 15px;
-  }
-  
-  .navbar-link-inventory {
-    color: #fff;
-    text-decoration: none;
-    padding: 5px 10px;
-  }
-  
-  .navbar-link-inventory:hover {
-    background-color: #fd7c04;
-    border-radius: 5px;
-  }
-  
-  
-  .back-button{
-    background-image: url("/src/asset/left-arrow.png");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 20px;
-    height: 20px;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .wrap-login-stock {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-    /* width: 80%; */
-    align-items: center;
-    gap: 20px;
-    height: 350px;
-    max-width: 300px;
-    margin: 20px;
-  }
-  .wrap-button-stock {
-    justify-content: center;
-    margin-top: 10px;
-    display: flex;
-  }
-  
-  h1 {
-    text-align: center;
-    color: #ffffff;
-    margin-bottom: 10px;
-  }
-  
-  form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .label-stock {
-    gap: 15px;
-    font-size: 16px;
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: auto;
-  }
-  
-  .wrap-input {
-    gap: 10px;
-  }
-  
-  .btn-login {
-    padding: 10px 15px;
-    border: none;
-    border-radius: 8px;
-    background-color: #ff5405;
-    color: #fff;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    margin-top: 10px;
-  }
-  
-  .btn-register{
-    padding: 10px 15px;
-    border: none;
-    border-radius: 8px;
-    background-color: #ff5405;
-    color: #fff;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    margin-top: 10px;
-  }
-  
-  .login-input-stock {
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-top: 5px;
-    width: auto;
-  }
-  
-  .button-stock:hover {
-    background-color: #000000;
-    color: white;
-  }
-  
-  .button-stock + .button-stock {
-    background-color: #ff5405;
-  }
-  
-  .button-stock + .button-stock:hover {
-    background-color: #000000;
-  }
-  .btn-login:hover  {
-    background-color: #000000;
-    color: white;
-  }
-  
-  .btn-register:hover  {
-    background-color: #000000;
-    color: white;
-  }
-  
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: url("/src/asset/login.jpeg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.navbar {
+  width: 100%;
+  padding: 15px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.back-button {
+  background-image: url("/src/asset/left-arrow.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 20px;
+  height: 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.navigation {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.navbar-inventory {
+  background-color: #853002;
+  padding: 10px 20px;
+  color: #fff;
+}
+
+.navbar-content-inventory {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-title-inventory {
+  margin: 0;
+}
+
+.navbar-links-inventory {
+  display: flex;
+  gap: 15px;
+}
+
+.navbar-link-inventory {
+  color: #fff;
+  text-decoration: none;
+  padding: 5px 10px;
+}
+
+.navbar-link-inventory:hover {
+  background-color: #fd7c04;
+  border-radius: 5px;
+}
+
+.back-button {
+  background-image: url("/src/asset/left-arrow.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 20px;
+  height: 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.wrap-login-stock {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  /* width: 80%; */
+  align-items: center;
+  gap: 20px;
+  height: 350px;
+  max-width: 300px;
+  margin: 20px;
+}
+.wrap-button-stock {
+  justify-content: center;
+  margin-top: 10px;
+  display: flex;
+}
+
+h1 {
+  text-align: center;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.label-stock {
+  gap: 15px;
+  font-size: 16px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: auto;
+}
+
+.wrap-input {
+  gap: 10px;
+}
+
+.btn-login {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  background-color: #ff5405;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 10px;
+}
+
+.btn-register {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  background-color: #ff5405;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 10px;
+}
+
+.login-input-stock {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 5px;
+  width: auto;
+}
+
+.button-stock:hover {
+  background-color: #000000;
+  color: white;
+}
+
+.button-stock + .button-stock {
+  background-color: #ff5405;
+}
+
+.button-stock + .button-stock:hover {
+  background-color: #000000;
+}
+.btn-login:hover {
+  background-color: #000000;
+  color: white;
+}
+
+.btn-register:hover {
+  background-color: #000000;
+  color: white;
+}

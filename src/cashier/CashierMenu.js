@@ -12,6 +12,7 @@ const Cart = () => {
   const [selectedSize, setSelectedSize] = useState({});
   const [customerName, setCustomerName] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("");
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     axios
@@ -37,7 +38,9 @@ const Cart = () => {
         setQuantity({});
       });
   }, [quantity]);
-
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
   const handleAddToCart = (product, variant, size) => {
     if (!variant) {
       alert("Please select a variant");
@@ -136,7 +139,7 @@ const Cart = () => {
       variant_type: item.variant_type,
       size_name: item.size_name,
       quantity_order: item.quantity_order,
-      OrderDate:order_date,
+      OrderDate: order_date,
       price: item.price,
       total_price: item.price * item.quantity_order, // Calculate total price for the item
     }));
@@ -227,11 +230,22 @@ const Cart = () => {
       <header className={styles["navbar-inventory"]}>
         <div className={styles["navbar-content-inventory"]}>
           <h1 className={styles["navbar-title-inventory"]}>TerasKopi54</h1>
-          <nav className={styles["navbar-links-inventory"]}>
+          <nav
+            className={`${styles["navigation"]} ${
+              isMenuOpen ? styles["open"] : ""
+            }`}
+          >
+            <div className={styles["wrap-close"]}>
+              <i
+                className={`${styles["close-btn"]} fas fa-times`}
+                onClick={toggleMenu}
+              ></i>
+            </div>
+
             <Link className={styles["navbar-link-inventory"]} to="/AddProduct">
               Add Product
             </Link>
-            <Link className={styles["navbar-link-inventory"]} to={"/Product"}>
+            <Link className={styles["navbar-link-inventory"]} to="/Product">
               Product List
             </Link>
             <Link
@@ -240,18 +254,21 @@ const Cart = () => {
             >
               Order Details
             </Link>
-            <Link
-              className={styles["navbar-link-inventory"]}
-              to={"/CashierMenu"}
-            >
-              {" "}
+            <Link className={styles["navbar-link-inventory"]} to="/CashierMenu">
               Menu
             </Link>
-            <Link className={styles["navbar-link-inventory"]} to={"/cashier"}>
-              {" "}
-              logOut
+            <Link className={styles["navbar-link-inventory"]} to="/cashier">
+              LogOut
             </Link>
           </nav>
+          <div
+            className={`${styles["hamburger"]} ${
+              isMenuOpen ? styles["open"] : ""
+            }`}
+            onClick={toggleMenu}
+          >
+            <i className={`${styles["menu-btn"]} fas fa-bars`}></i>
+          </div>
         </div>
       </header>
       <h1 className={styles["Menu"]}>Menu</h1>
@@ -311,10 +328,10 @@ const Cart = () => {
                   </select>
                 )}
                 <div className={styles["button-container"]}>
-                  <button
+                  {/* <button
                     className="fa-solid fa-minus"
                     onClick={() => handleDecreaseItem(product.product_id)}
-                  ></button>
+                  ></button> */}
                   <button
                     onClick={() =>
                       handleAddToCart(
@@ -324,7 +341,7 @@ const Cart = () => {
                       )
                     }
                     className="fa-solid fa-plus"
-                  ></button>
+                  >Add To Cart</button>
                 </div>
               </div>
             ))}
@@ -348,10 +365,10 @@ const Cart = () => {
                     border: "2px solid white",
                   }}
                 />
-                <p>
+                <p className={styles["cart-item-name"]}>
                   {item.product_name} ({item.variant_type}){" "}
                 </p>
-                <p>
+                <p className={styles["cart-item-name"]}>
                   {item.size_name ? ` ${item.size_name}` : ""} x{" "}
                   {item.quantity_order} Rp.{item.price * item.quantity_order}
                 </p>
