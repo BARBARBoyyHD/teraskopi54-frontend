@@ -5,6 +5,18 @@
   padding: 2px solid black;
   gap: 50px;
 }
+
+.logo{
+  margin-top: 10px;
+  width: 100px;
+  height: 100px;
+  background-image: url("/src/asset/Teraskopilogo.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 header {
   justify-content: center;
   align-items: center;

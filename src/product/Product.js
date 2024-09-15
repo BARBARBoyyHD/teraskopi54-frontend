@@ -9,7 +9,7 @@ const Product = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/products")
+    fetch("https://api.myteraskopi54.my.id/api/products")
       .then((res) => res.json()) // Return the parsed JSON data
       .then((data) => {
         if (Array.isArray(data)) {
@@ -29,7 +29,7 @@ const Product = () => {
   };
 
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/api/products/${id}`, {
+    fetch(`https://api.myteraskopi54.my.id/api/products/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -96,7 +96,7 @@ const Product = () => {
       selector: (row) => row.image_url,
       cell: (row) => (
         <img
-          src={`http://localhost:5000/${row.image_url}`}
+          src={`https://api.myteraskopi54.my.id/${row.image_url}`}
           style={{ width: "50px", height: "50px" }}
         />
       ),

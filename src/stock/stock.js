@@ -12,13 +12,16 @@ const Stock = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:5000/api/login-stock", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ username, password }),
-      });
+      const response = await fetch(
+        "https://api.myteraskopi54.my.id/api/login-stock",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ username, password }),
+        }
+      );
 
       if (response.ok) {
         navigate("/inventory");
@@ -85,6 +88,11 @@ const Stock = () => {
           </div>
         </form>
         {message && <p>{message}</p>}
+      </div>
+      <div style={{ position: "absolute", bottom: "0px", width: "100%" }}>
+        <footer style={{ textAlign: "center" }}>
+          <p>Copyright © 2024 Muhammad Nahrul Hayat</p>
+        </footer>
       </div>
     </div>
   );

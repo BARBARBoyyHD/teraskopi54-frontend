@@ -12,7 +12,7 @@ const RegisterCashier = () => {
 
   const handleRegister = (e) => {
     e.preventDefault();
-    fetch("http://localhost:5000/api/register-cashier", {
+    fetch("https://api.myteraskopi54.my.id/api/register-cashier", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

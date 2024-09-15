@@ -8,7 +8,7 @@ const Inventory = () => {
   const [filterText, setFilterText] = useState("");
 
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/api/inventory/${id}`, {
+    fetch(`https://api.myteraskopi54.my.id/api/inventory/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -27,7 +27,7 @@ const Inventory = () => {
   };
 
   const getInventory = () => {
-    fetch("http://localhost:5000/api/inventory")
+    fetch("https://api.myteraskopi54.my.id/api/inventory")
       .then((res) => res.json())
       .then((data) => {
         const inventoryData = data;

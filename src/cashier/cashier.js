@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import style from "./cashier.module.css";
 
-
 const Cashier = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -10,7 +9,7 @@ const Cashier = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    fetch("http://localhost:5000/api/login-cashier", {
+    fetch("https://api.myteraskopi54.my.id/api/login-cashier", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -33,53 +32,62 @@ const Cashier = () => {
 
   const handleRegister = (e) => {
     navigate("/RegisterCashier");
-  }
+  };
 
   return (
     <div className={style["stock"]}>
-    <header className={style["navbar"]}>
-      <div className={style["navigation"]}>
-        <Link to="/" className={style["back-button"]}></Link>
-      </div>
-    </header>
-    <div className={style["wrap-login-stock"]}>
-      <h1>Cashier Login</h1>
-      <form onSubmit={handleLogin}>
-        <div className={style["wrap-input"]}>
-        <div className={style["wrap-input"]}>
-            <div className={style["icon-input"]}>
-              <i className="fas fa-user"></i>
-              <input
-                className={style["login-input-stock"]}
-                type="text"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                required
-                placeholder="Username"
-              />
-            </div>
+      <header className={style["navbar"]}>
+        <div className={style["navigation"]}>
+          <Link to="/" className={style["back-button"]}></Link>
+        </div>
+      </header>
+      <div className={style["wrap-login-stock"]}>
+        <h1>Cashier Login</h1>
+        <form onSubmit={handleLogin}>
+          <div className={style["wrap-input"]}>
+            <div className={style["wrap-input"]}>
+              <div className={style["icon-input"]}>
+                <i className="fas fa-user"></i>
+                <input
+                  className={style["login-input-stock"]}
+                  type="text"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  required
+                  placeholder="Username"
+                />
+              </div>
 
-            <div className={style["icon-input"]}>
-              <i className="fas fa-lock"></i>
-              <input
-                className={style["login-input-stock"]}
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Password"
-                required
-              />
+              <div className={style["icon-input"]}>
+                <i className="fas fa-lock"></i>
+                <input
+                  className={style["login-input-stock"]}
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Password"
+                  required
+                />
+              </div>
             </div>
           </div>
-        </div>
-        <div className={style["wrap-button-stock"]}>
-          <button type="submit" className={style["btn-login"]}>Login</button>
+          <div className={style["wrap-button-stock"]}>
+            <button type="submit" className={style["btn-login"]}>
+              Login
+            </button>
 
-          <button onClick={handleRegister}  className={style["btn-register"]}>Register</button>
-        </div>
-      </form>
+            <button onClick={handleRegister} className={style["btn-register"]}>
+              Register
+            </button>
+          </div>
+        </form>
+      </div>
+      <div style={{ position: "absolute", bottom: "0px", width: "100%" }}>
+        <footer style={{ textAlign: "center" }}>
+          <p>Copyright © 2024 Muhammad Nahrul Hayat</p>
+        </footer>
+      </div>
     </div>
-  </div>
   );
 };
 

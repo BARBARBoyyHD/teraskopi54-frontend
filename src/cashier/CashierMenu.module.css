@@ -205,7 +205,7 @@
 @media print {
   body {
     display: flex;
-    min-height: 100vh;
+    /* min-height: 100vh; */
     align-items: center;
     justify-content: center;
   }
@@ -231,7 +231,7 @@
   .Menu {
     display: none;
   }
-  .cart-item{
+  .cart-item {
     display: none;
   }
 }
@@ -239,21 +239,21 @@
   .navbar-title-inventory {
     font-size: 20px;
   }
-  .cart-item{
+  .cart-item {
     padding: 5px;
-    display:block;
+    display: block;
     align-items: center;
     justify-content: center;
   }
-  .navigation{
+  .navigation {
     gap: 0px;
   }
-  .navbar-link-inventory{
-    font-size: 15px;  
+  .navbar-link-inventory {
+    font-size: 15px;
     gap: 0px;
   }
 }
-@media (max-width: 400px) {
+@media (max-width: 500px) {
   /* Hide navbar links on small screens */
   .navigation {
     display: none;
@@ -291,7 +291,7 @@
   .hamburger.open .menu-btn {
     display: none; /* Hide menu button when menu is open */
   }
-  .close-btn{
+  .close-btn {
     display: flex;
   }
   .hamburger.open .close-btn {
@@ -363,8 +363,37 @@
   }
 }
 
-@media print and (max-width:768px){
-  .cart-wrap{
+@media print and (max-width: 768px) {
+
+  body {
+    display: flex;
+    /* min-height: 100vh; */
+    align-items: center;
+    justify-content: center;
+  }
+  h2 {
+    text-align: center;
+  }
+  h3 {
+    text-align: center;
+  }
+  p {
+    text-align: center;
+  }
+
+  .wrap-menu {
+    display: none;
+  }
+  .cart-wrap {
+    display: none; /* Ensure the cart is displayed */
+  }
+  header {
+    display: none;
+  }
+  .Menu {
+    display: none;
+  }
+  .cart-item {
     display: none;
   }
 }

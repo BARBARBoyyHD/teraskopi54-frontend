@@ -9,7 +9,7 @@ const OrderDetails = () => {
   const [OrderDetails, setOrderDetails] = useState([]);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const tableOrder = () => {
-    fetch("http://localhost:5000/api/orders")
+    fetch("https://api.myteraskopi54.my.id/api/orders")
       .then((res) => res.json())
       .then((data) => {
         if (Array.isArray(data)) {

@@ -16,7 +16,7 @@ const Cart = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/products")
+      .get("https://api.myteraskopi54.my.id/api/products")
       .then((response) => {
         // Log the response data
         if (Array.isArray(response.data)) {
@@ -148,7 +148,7 @@ const Cart = () => {
       0
     );
     axios
-      .post("http://localhost:5000/api/add-order", {
+      .post("https://api.myteraskopi54.my.id/api/add-order", {
         orders: formattedCart,
         total_amount: totalAmount,
       })
@@ -160,27 +160,46 @@ const Cart = () => {
         receiptElement.innerHTML = `
         <div className= "Receipt">
         <h2>------------------------------</h2>
-          <h2>Teras Kopi</h2>
+          <h2>Teras Kopi 54</h2>
+          <div style="display:flex; justify-content: space-between;">
+          <h5>Order Date : </h5>
+          <h5>${order_date}</h5>
+          </div>
           
-        <h2>------------------------------</h2>
-          <br>
+          <h2>------------------------------</h2>
+        
           ${formattedCart
             .map(
               (item) => `
-                <div>
-                  <h3>${item.product_name} (${item.variant_type}) x ${item.quantity_order} Rp.${item.total_price}</h3>
+                <div style="display:flex; justify-content: space-between;">
+                  <h5>${item.product_name} (${item.variant_type}) x ${item.quantity_order} </h5>
+                  <h5>Rp.${item.total_price}</h5>
                 </div>
               `
             )
             .join("")}
-            <br>
         <h2>------------------------------</h2>
-          <p>Order Date : ${order_date}</p>
-          <p>Customer Name: ${customerName}</p>
-          <p>Payment: ${paymentMethod}</p>
-          <p><strong>Total: Rp.${totalAmount}</strong></p>
-          <h2>Terima Kasih</h2>
-          <p>Jl.Panorama 54 GegerKalong Bandung JawaBarat</p>
+         <div style="display: flex; flex-direction: column;">
+  <!-- Row for Customer Name -->
+  <div style="display: flex; justify-content: space-between; width: 100%;">
+    <h5>Customer Name:</h5>
+    <h5>${customerName}</h5>
+  </div>
+
+  <!-- Row for Payment Method -->
+  <div style="display: flex; justify-content: space-between; width: 100%;">
+    <h5>Payment:</h5>
+    <h5>${paymentMethod}</h5>
+  </div>
+
+  <!-- Row for Total Amount -->
+  <div style="display: flex; justify-content: space-between; width: 100%;">
+    <h5>Total:</h5>
+    <h5>Rp.${totalAmount}</h5>
+  </div>
+</div>
+          <h5 style="text-align: center">Terima Kasih</h5>
+          <h5 style="text-align: center" >Jl.Panorama 54 GegerKalong Bandung JawaBarat</h5>
         </div>
           
         `;
@@ -278,7 +297,7 @@ const Cart = () => {
             {products.map((product) => (
               <div key={product.product_id} className={styles["menu-item"]}>
                 <img
-                  src={`http://localhost:5000/${product.image_url}`}
+                  src={`https://api.myteraskopi54.my.id/${product.image_url}`}
                   style={{ width: 100, height: 100 }}
                   alt={product.product_name}
                 />
@@ -341,7 +360,9 @@ const Cart = () => {
                       )
                     }
                     className="fa-solid fa-plus"
-                  >Add To Cart</button>
+                  >
+                    Add To Cart
+                  </button>
                 </div>
               </div>
             ))}
@@ -357,7 +378,7 @@ const Cart = () => {
                 className={styles["cart-item"]}
               >
                 <img
-                  src={`http://localhost:5000/${item.image_url}`}
+                  src={`https://api.myteraskopi54.my.id/${item.image_url}`}
                   style={{
                     width: 30,
                     height: 30,

@@ -20,7 +20,7 @@ const Addinventory = () => {
     }
 
     try {
-      const res = await fetch("http://localhost:5000/api/add-item", {
+      const res = await fetch("https://api.myteraskopi54.my.id/api/add-item", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

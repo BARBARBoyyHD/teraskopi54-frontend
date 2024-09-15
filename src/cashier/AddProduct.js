@@ -28,7 +28,7 @@ function AddProductForm() {
     formData.append("image", image);
 
     try {
-      await axios.post("http://localhost:5000/api/add-product", formData, {
+      await axios.post("https://api.myteraskopi54.my.id/api/add-product", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

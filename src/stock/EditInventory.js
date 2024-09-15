@@ -11,7 +11,7 @@ const EditInventory = () => {
 
   useEffect(() => {
     // Fetch item data based on `id`
-    fetch(`http://localhost:5000/api/inventory/${id}`)
+    fetch(`https://api.myteraskopi54.my.id/api/inventory/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setItemName(data.item_name);
@@ -24,7 +24,7 @@ const EditInventory = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch(`http://localhost:5000/api/inventory/${id}`, {
+    fetch(`https://api.myteraskopi54.my.id/api/inventory/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

@@ -19,7 +19,7 @@ const EditProduct = () => {
 
   // Fetch product data using useEffect
   useEffect(() => {
-    fetch(`http://localhost:5000/api/products/${id}`)
+    fetch(`https://api.myteraskopi54.my.id/api/products/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setProductName(data.product_name);
@@ -57,7 +57,7 @@ const EditProduct = () => {
     }
 
     try {
-      await axios.put(`http://localhost:5000/api/products/${id}`, formData, {
+      await axios.put(`https://api.myteraskopi54.my.id/api/products/${id}`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -198,7 +198,7 @@ const EditProduct = () => {
           {/* Display the existing image */}
           {existingImageUrl && (
             <img
-              src={`http://localhost:5000/uploads/${existingImageUrl}`} // Corrected to use image_url from the database
+              src={`https://api.myteraskopi54.my.id/uploads/${existingImageUrl}`} // Corrected to use image_url from the database
               width="100"
               className={styles.image}
             />

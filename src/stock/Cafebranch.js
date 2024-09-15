@@ -14,7 +14,7 @@ const Cafebranch = () => {
   // Fetch functions omitted for brevity...
   // Function to handle delete
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/api/cafe-branch/${id}`, {
+    fetch(`https://api.myteraskopi54.my.id/api/cafe-branch/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -28,7 +28,7 @@ const Cafebranch = () => {
 
   // Function to handle edit
   const handleEdit = () => {
-    fetch(`http://localhost:5000/api/cafe-branch/${editingBranch.id_branch}`, {
+    fetch(`https://api.myteraskopi54.my.id/api/cafe-branch/${editingBranch.id_branch}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -60,7 +60,7 @@ const Cafebranch = () => {
   // Function to handle form submission for adding new branch
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch("http://localhost:5000/api/add-cafe-branch", {
+    fetch("https://api.myteraskopi54.my.id/api/add-cafe-branch", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -84,7 +84,7 @@ const Cafebranch = () => {
 
   // Function to get cafe branch data
   const getCafeBranch = () => {
-    fetch(`http://localhost:5000/api/cafe-branch`)
+    fetch(`https://api.myteraskopi54.my.id/api/cafe-branch`)
       .then((res) => res.json())
       .then((data) => {
         if (Array.isArray) {
